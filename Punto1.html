@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: rgb(224, 224, 224);
+            box-sizing: border-box;
+        }
+        .figure {
+            background-color: white;
+        }
+        p{
+            background-color: white;
+        }
+        
+        p.line{
+            padding: 10px;
+            border-bottom: 5px rgb(0, 174, 255) solid;
+            width: 75.5%;
+            margin-top: -10px;
+            display: inline-flex;
+        }
+        p.line.two{
+            width: 24.5%;
+            border-bottom: 5px rgb(135, 217, 255) solid;
+            margin-left: -5px;
+        }
+        .content .figure p{
+            text-transform: uppercase;
+        }
+        #bell{
+            margin-top: -75px;
+        }
+        #user{
+            margin-top: -75px;
+            background-color: green;
+        }
+        #vertical{
+            margin-top: -110px;
+            background-color: orange;
+        }
+        #dollar{
+            margin-top: -75px;
+            background-color: blue;
+        }
+        .content{
+            height: 150px;
+            max-width: 100%;
+            display: inline-flex;
+        }
+        .content div{
+            width: 300px;
+            padding: 10px;
+            margin: 0 10px;
+            border: 3px gainsboro solid;
+        }
+        .content .figure i{
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+        .content .figure2 i{
+            background-color: green;
+        }
+        .figure i{
+            background-color: white;
+            font-size: 40px;
+            color: black;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            text-align: center;
+            padding-top: 10px;
+            display: inline-block;
+            float: right;
+        }
+        p.p1{
+            font-size: 12px;
+            color: rgb(133, 133, 133);
+        }
+        .p2{
+            font-size: 20px;
+        }
+        .p3{
+            display: inline-flex;
+            font-size: 10px;
+            color: rgb(177, 179, 179);
+        }
+        .p3.por{
+            color: green;
+        }
+        .p3.porr{
+            color: rgb(241, 7, 7);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="figure">
+            <p class="p1">budget</p>
+            <p class="p2">$24,000</p>
+            <i id="bell" class="fa-sharp fa-solid fa-bell"></i>
+            <p class="p3 porr">12%</p>
+            <p class="p3">Since last month</p>
+        </div>
+        <div class="figure">
+            <p class="p1">total customers</p>
+            <p class="p2">1,600</p>
+            <i id="user" class="fa-solid fa-user-group"></i>
+            <p class="p3 por">16%</p>
+            <p class="p3">since last month</p>
+        </div>
+        <div class="figure">
+            <p class="p1">tasks progress</p>
+            <p class="p2">75.5%</p>
+            <p class="line"></p>
+            <p class="line two"></p>
+            <br>
+            <i id="vertical" class="fa-solid fa-square-poll-vertical"></i>
+        </div>
+        <div class="figure">
+            <p class="p1">total profit</p>
+            <p class="p2">$23,200</p>
+            <i id="dollar" class="fa-sharp fa-solid fa-dollar-sign"></i>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+</html>

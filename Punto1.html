@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Primer Punto</title>
     <style>
         *{
             background-color: rgb(224, 224, 224);
@@ -75,7 +75,6 @@
             align-items: center;
             text-align: center;
             padding-top: 10px;
-            display: inline-block;
             float: right;
         }
         p.p1{
@@ -92,18 +91,53 @@
         }
         .p3.por{
             color: green;
+            margin-left: -10px;
         }
         .p3.porr{
             color: rgb(241, 7, 7);
+            margin-left: -10px;
+        }
+        .content .figure i#arrow1{
+            background-color: white;
+            margin-left: -10px;
+            font-size: 10px;
+            color: green;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            text-align: center;
+            padding-top: 10px;
+            float: left;
+        }
+        .content .figure i#arrow2{
+            background-color: white;
+            margin-left: -10px;
+            font-size: 10px;
+            color: red;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            text-align: center;
+            padding-top: 10px;
+            float: left;
+        }
+        .inicio{
+            display: block;
+            list-style: none;
+            text-decoration: none;
+            margin: 20px;
+            color: blue;
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="inicio">Inicio</a>
     <div class="content">
         <div class="figure">
             <p class="p1">budget</p>
             <p class="p2">$24,000</p>
             <i id="bell" class="fa-sharp fa-solid fa-bell"></i>
+            <i id="arrow2" class="fa-solid fa-arrow-down"></i>
             <p class="p3 porr">12%</p>
             <p class="p3">Since last month</p>
         </div>
@@ -111,6 +145,7 @@
             <p class="p1">total customers</p>
             <p class="p2">1,600</p>
             <i id="user" class="fa-solid fa-user-group"></i>
+            <i id="arrow1" class="fa-solid fa-arrow-up"></i>
             <p class="p3 por">16%</p>
             <p class="p3">since last month</p>
         </div>

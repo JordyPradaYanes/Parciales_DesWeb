@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto Dos</title>
+</head>
+
+<body>
+    <a href="index.html" class="inicio">Inicio</a>
+    <label for="ingreso">Ingrese</label>
+    <input id="ingreso" type="text">
+    <button id="btn">Enviar</button>
+
+    <p id="cantNum"></p>
+    <p id="sum"></p>
+    <p id="res"></p>
+    <p id="mul"></p>
+    <p id="prom"></p>
+    <p id="happy"></p>
+
+    
+    <script>
+        const cantNum = document.getElementById("cantNum");
+        const sum = document.getElementById("sum");
+        const res = document.getElementById("res");
+        const mult = document.getElementById("mul");
+        const prom = document.getElementById("prom");
+        const happy = document.getElementById("happy");
+        const btn = document.getElementById("btn");
+        const ing = document.getElementById("ingreso");
+
+        btn.addEventListener("click", () => {
+            var textOne = String(ing.value);
+            if (textOne === "") {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "No dejes la caja de texto vacia",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+            var textTwo = textOne.split(" ");
+            var cantidadNumeros=textTwo.length;
+            var suma = 0;
+            var resta = 0;
+            var multiplicacion=1;
+            var promedio;
+
+            if (textTwo.length > 5) {
+                Swal.fire({
+                    title: "Felicidades, has llegado a introducir mas de 5 numeros",
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    timer: 2000
+                });
+            }
+            var textThree= [];
+            for (let i = 0; i < textTwo.length; i++) {
+                textThree.push(parseInt(textTwo[i]));
+                
+            }
+            for (let i = 0; i < textThree.length; i++) {
+                suma += textThree[i];
+                resta -= textThree[i];
+                multiplicacion *= textThree[i];
+                promedio = suma / textThree.length;
+            }
+            cantNum.innerHTML="La cantidad de numeros ingresados es de : "+cantidadNumeros;
+            sum.innerText="La suma de los numeros ingresados es de : "+suma;
+            res.innerText="La resta de los numeros ingresados es de : "+resta;
+            mul.innerText="la multiplicacion de los numeros es de : "+multiplicacion;
+            prom.innerHTML="el promedio de los numeros es de : "+promedio;
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

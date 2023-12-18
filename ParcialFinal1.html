@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primer Punto</title>
+</head>
+
+<body>
+    <a href="index.html" class="inicio">Inicio</a>
+    <div>
+        <label for="num">Ingrese el numero de la tabla de multiplicar que desea saber:</label>
+        <input type="text" id="num" placeholder="Ingrese un numero">
+        <br>
+        <label for="num">Ingrese el numero hasta donde quiera llegar:</label>
+        <input type="text" id="num2" placeholder="Ingrese un numero">
+        <span id="error"></span>
+        <br>
+        <button id="btn">Enviar</button>
+    </div>
+    <div>
+        <div id="msj" style="display: flex; padding: 0 5px;">
+            <p id="cero"></p>
+            <span id="ciro" style="justify-content: center; text-align: center;"></span>
+        </div>
+        <div id="tabla">
+        </div>
+    </div>
+    <script>
+        const num = document.getElementById("num");
+        const num_2 = document.getElementById("num2");
+        const cero = document.getElementById("cero");
+        const tabla = document.getElementById("tabla");
+        const btn = document.getElementById("btn");
+        const ciro = document.getElementById("ciro");
+
+        btn.addEventListener("click", () => {
+            var num1 = parseInt(num.value);
+            var num2 = parseInt(num_2.value);
+            var mostrar = "";
+            for (let i = 1; i <= num2; i++) {
+                cero.innerHTML=num1+" * "+0+" = "+0;
+                ciro.innerHTML = "Todo numero nultiplicado por cero es cero"
+
+                var resultado = num1 * i;
+                mostrar += "<p>" + num1 + " * " + i + " = " + resultado + "</p>" + "<br>";
+                console.log(i);
+            }
+            tabla.innerHTML = mostrar;
+        })
+    </script>
+</body>
+
+</html>

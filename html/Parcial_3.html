@@ -25,8 +25,12 @@
             background-color: var(--fondo--página);
             box-sizing: border-box;
         }
-
+        header{
+            position: fixed;
+            z-index: 1;
+        }
         main {
+            z-index: 0;
             width: 100%;
         }
 
@@ -135,19 +139,19 @@
     <header>
         <nav class="nav">
             <a href="../index.html"><i class="fa-solid fa-house"></i>
-                <p>Inicio</p>
+                Inicio
             </a>
             <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                <p>HTML5</p>
+                HTML5
             </a>
-            <a href=""><i class="fa-brands fa-css3-alt"></i>
-                <p>CSS3</p>
+            <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
+                CSS3
             </a>
-            <a href=""><i class="fa-solid fa-fire"></i>
-                <p>Parciales</p>
+            <a href="#Javascript"><i class="fa-solid fa-fire"></i>
+                Javascript
             </a>
-            <a href=""><i class="fa-solid fa-user"></i>
-                <p>Usuario</p>
+            <a href="#Usuario"><i class="fa-solid fa-user"></i>
+                Usuario
             </a>
         </nav>
     </header>
@@ -193,6 +197,7 @@
                 </div>
             </div>
         </div>
+        <script src="../Js/sttilos.js"></script>
         <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
     </main>

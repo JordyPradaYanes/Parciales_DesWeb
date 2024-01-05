@@ -12,26 +12,39 @@
 <body onload="puntero()">
     <header>
         <nav class="nav">
-            <a href="../index.html"><i class="fa-solid fa-house"></i><p>Inicio</p></a>
-            <a href=""><i class="fa-brands fa-html5"></i><p>HTML5</p></a>
-            <a href=""><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></a>
-            <a href=""><i class="fa-solid fa-fire"></i><p>Parciales</p></a>
-            <a href=""><i class="fa-solid fa-user"></i><p>Usuario</p></a>
+            <a href="../index.html"><i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+            <a href="#HTML5"><i class="fa-brands fa-html5"></i>
+                HTML5
+            </a>
+            <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
+                CSS3
+            </a>
+            <a href="#Javascript"><i class="fa-solid fa-fire"></i>
+                Javascript
+            </a>
+            <a href="#Usuario"><i class="fa-solid fa-user"></i>
+                Usuario
+            </a>
         </nav>
     </header>
-    <br>
-    <div>
+    <main>
+        <br>
         <div>
-            <label style="margin-right: 10px" for="name1">Ingrese: </label>
-            <input style="height: 15px" type="text" id="name1" placeholder="Ingrese aqui" onblur="calcular()" />
-            <span id="span1"></span>
+            <div>
+                <label style="margin-right: 10px" for="name1">Ingrese: </label>
+                <input style="height: 15px" type="text" id="name1" placeholder="Ingrese aqui" onblur="calcular()" />
+                <span id="span1"></span>
+            </div>
+            <div>
+                <label style="margin-right: 10px" for="name2">Ingrese: </label>
+                <input style="height: 15px" type="text" id="name2" placeholder="Ingrese aqui" disabled
+                    onblur="calcular()" />
+                <span id="span2"></span>
+            </div>
         </div>
-        <div>
-            <label style="margin-right: 10px" for="name2">Ingrese: </label>
-            <input style="height: 15px" type="text" id="name2" placeholder="Ingrese aqui" disabled onblur="calcular()" />
-            <span id="span2"></span>
-        </div>
-    </div>
+    </main>
     <button id="btn">enviar</button>
 
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
@@ -71,22 +84,23 @@
             }
         });
 
-        function calcular(){
-            if(name1.value==""){
-                span1.innerHTML="Esta caja no puede estar vacia";
+        function calcular() {
+            if (name1.value == "") {
+                span1.innerHTML = "Esta caja no puede estar vacia";
                 name1.focus();
-            }else{
-                span1.innerHTML="";
+            } else {
+                span1.innerHTML = "";
             }
 
-            if(name2.value==""){
-                span2.innerHTML="Esta caja no puede estar vacia";
+            if (name2.value == "") {
+                span2.innerHTML = "Esta caja no puede estar vacia";
                 name2.focus();
-            }else{
-                span2.innerHTML="";
+            } else {
+                span2.innerHTML = "";
             }
         }
     </script>
+    <script src="../Js/sttilos.js"></script>
 </body>
 
 </html>

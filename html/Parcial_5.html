@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,52 +8,65 @@
     <title>Punto cinco</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body onload="puntero()">
     <header>
         <nav class="nav">
-            <a href="../index.html"><i class="fa-solid fa-house"></i><p>Inicio</p></a>
-            <a href=""><i class="fa-brands fa-html5"></i><p>HTML5</p></a>
-            <a href=""><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></a>
-            <a href=""><i class="fa-solid fa-fire"></i><p>Parciales</p></a>
-            <a href=""><i class="fa-solid fa-user"></i><p>Usuario</p></a>
+            <a href="../index.html"><i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+            <a href="#HTML5"><i class="fa-brands fa-html5"></i>
+                HTML5
+            </a>
+            <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
+                CSS3
+            </a>
+            <a href="#Javascript"><i class="fa-solid fa-fire"></i>
+                Javascript
+            </a>
+            <a href="#Usuario"><i class="fa-solid fa-user"></i>
+                Usuario
+            </a>
         </nav>
     </header>
-    <br>
-    <form action="">
-        <label for="name" >Nombres: </label>
-        <input id="name" type="text">
+    <main>
         <br>
-        <label for="apellido">Apellidos: </label>
-        <input id="apellido" type="text">
-        <br>
-        <label for="edad">Edad: </label>
-        <input id="edad" type="text">
-        <br>
-        <label for="sexo">sexo: </label>
-        <input type="radio" name="sexo" id="f">
-        <input type="radio" name="sexo" id="m">
-        <br>
-        <label for="email">Email: </label>
-        <input id="email" type="email">
-        <br>
-        <label for="password1">Contraseña: </label>
-        <input id="password1" type="password">
-        <br>
-        <label for="cPassword">Confirmar Contraseña: </label>
-        <input id="cPassword" type="password">
+        <form action="">
+            <label for="name">Nombres: </label>
+            <input id="name" type="text">
+            <br>
+            <label for="apellido">Apellidos: </label>
+            <input id="apellido" type="text">
+            <br>
+            <label for="edad">Edad: </label>
+            <input id="edad" type="text">
+            <br>
+            <label for="sexo">sexo: </label>
+            <input type="radio" name="sexo" id="f">
+            <input type="radio" name="sexo" id="m">
+            <br>
+            <label for="email">Email: </label>
+            <input id="email" type="email">
+            <br>
+            <label for="password1">Contraseña: </label>
+            <input id="password1" type="password">
+            <br>
+            <label for="cPassword">Confirmar Contraseña: </label>
+            <input id="cPassword" type="password">
 
-        <button id="btn">Click</button>
-        <br>
-        <div id="mostrar">
+            <button id="btn">Click</button>
+            <br>
+            <div id="mostrar">
 
-        </div>
-    </form>
+            </div>
+        </form>
+    </main>
 
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const name1 = document.getElementById("name");
-        const app  = document.getElementById("apellido");
+        const app = document.getElementById("apellido");
         const edad = document.getElementById("edad");
         const email = document.getElementById("email");
         const pass = document.getElementById("password1");
@@ -60,13 +74,13 @@
         const btn = document.getElementById("btn");
         const mos = document.getElementById("mostrar");
 
-        function puntero(){
+        function puntero() {
             name1.focus();
         }
-        btn.addEventListener("click",(e)=>{
+        btn.addEventListener("click", (e) => {
             e.preventDefault();
 
-            if( name1.value == "" || app.value == "" || edad.value == "" || email.value  == "" || pass == "" || pass2 == ""){
+            if (name1.value == "" || app.value == "" || edad.value == "" || email.value == "" || pass == "" || pass2 == "") {
                 Swal.fire({
                     position: "top-end",
                     icon: "error",
@@ -74,7 +88,7 @@
                     showConfirmButton: false,
                     timer: 2000
                 });
-            }else if(pass.value == pass2.value){
+            } else if (pass.value == pass2.value) {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -82,8 +96,8 @@
                     showConfirmButton: false,
                     timer: 2000
                 });
-                mos.innerHTML="Su nombre es: "+name1.value+"<br>"+"Su apelliido es: "+app.value+"<br>"+"Su email es: "+email.value+"<br>"+"Su contraseña es: "+pass.value+"<br>";
-            }else{
+                mos.innerHTML = "Su nombre es: " + name1.value + "<br>" + "Su apelliido es: " + app.value + "<br>" + "Su email es: " + email.value + "<br>" + "Su contraseña es: " + pass.value + "<br>";
+            } else {
                 Swal.fire({
                     position: "top-end",
                     icon: "error",
@@ -91,9 +105,11 @@
                     showConfirmButton: false,
                     timer: 2000
                 });
-                mos.innerHTML="";
+                mos.innerHTML = "";
             }
         })
     </script>
+    <script src="../Js/sttilos.js"></script>
 </body>
+
 </html>

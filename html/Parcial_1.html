@@ -11,29 +11,40 @@
 <body>
     <header>
         <nav class="nav">
-            <a href="../index.html"><i class="fa-solid fa-house"></i><p>Inicio</p></a>
-            <a href=""><i class="fa-brands fa-html5"></i><p>HTML5</p></a>
-            <a href=""><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></a>
-            <a href=""><i class="fa-solid fa-fire"></i><p>Parciales</p></a>
-            <a href=""><i class="fa-solid fa-user"></i><p>Usuario</p></a>
+            <a href="../index.html"><i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+            <a href="#HTML5"><i class="fa-brands fa-html5"></i>
+                HTML5
+            </a>
+            <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
+                CSS3
+            </a>
+            <a href="#Javascript"><i class="fa-solid fa-fire"></i>
+                Javascript
+            </a>
+            <a href="#Usuario"><i class="fa-solid fa-user"></i>
+                Usuario
+            </a>
         </nav>
     </header>
-    <br>
-    <form action="" id="form">
-        <label for="ingreso">Ingrese: </label>
-        <input id="ingreso" type="text" placeholder="Ingrese aquí">
-        <br>
-        <button id="btn">Enviar</button>
-    </form>
+    <main>
+        <form action="" id="form">
+            <label for="ingreso">Ingrese: </label>
+            <input id="ingreso" type="text" placeholder="Ingrese aquí">
+            <br>
+            <button id="btn">Enviar</button>
+        </form>
 
-    <p id="cantNum"></p>
-    <p id="sum"></p>
-    <p id="res"></p>
-    <p id="mul"></p>
-    <p id="prom"></p>
+        <p id="cantNum"></p>
+        <p id="sum"></p>
+        <p id="res"></p>
+        <p id="mul"></p>
+        <p id="prom"></p>
 
+    </main>
     <script>
-        
+
         const btn = document.getElementById("btn");
         const ing = document.getElementById("ingreso");
         const form = document.getElementById("form");
@@ -43,12 +54,12 @@
         const mult = document.getElementById("mul");
         const prom = document.getElementById("prom");
 
-        var array1=[];                                                      // Almacenar los valores ingresados al input
+        var array1 = [];                                                      // Almacenar los valores ingresados al input
 
         form.addEventListener("submit", (e) => {
 
             e.preventDefault();                                             // Previene el comportamiento por defecto del Navegador___Recarga la página al undir un btn
-            
+
             var textOne = ing.value;                                        // Guardamos en una variable el valor del input
 
             if (textOne == "") {                                            // Evalua si el input esta vacio
@@ -102,6 +113,7 @@
             }
         })
     </script>
+    <script src="../Js/sttilos.js"></script>
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

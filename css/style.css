@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@300;500;900&display=swap');
 
 :root{
-    --color--principal: #0A082D;
-    --color--secundario: #16446A;
-    --color--terciario:  #72AFC1;
-    --color--cuarto: #1D1B1C;
+    --color--principal: #312BD9;
+    --color--secundario: #2F2ABF;
+    --color--terciario:  #262559;
+    --color--cuarto: #E8E8E8;
+    --color--quinto: #3b5a64;
+    --color--sexto: #D99B5E;
     --color--letras--footer: rgb(255, 255, 255);
 }
 
@@ -28,19 +30,26 @@ a:hover{
     cursor: pointer;
 }
 
+
 .li_none{
     list-style: none;
     margin: 0 10px;
 }
 
 main{
+    margin-top: 60px;
     height: 100vh;
-    padding: 10px 20px;
     text-align: justify;
+}
+h2{
+    color: #fff;
 }
 
 /*----------------- Estilos del navegador -----------------------*/
 .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     height: 60px;
     width: 100%;
     display: flex;
@@ -51,9 +60,41 @@ main{
 
 .nav a {
     color: white;
+    position: relative;
     display: flex;
     align-items: center;
     text-decoration: none; /* Evita el subrayado de los enlaces */
+}
+
+.nav a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.nav a:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.sticky{
+    background-color: rgba(28, 21, 248,0.405);
+    backdrop-filter: blur(5px);
+    color: white;
+
+    & a{
+        color: white;
+    }
+    & a p{
+        background-color: rgba(28, 21, 248,0.405);
+    }
 }
 
 .nav a i {
@@ -67,8 +108,41 @@ main{
     background-color: var(--color--secundario);
     color: white; /* Ajusta el color del texto si es necesario */
 }
+/*------------ CSS -----------------*/
+.CSS{
+    padding: 5px 10px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color--sexto);
+}
+
+.CSS_input{
+    margin: 10px 10px;
+    width: 20%;
+    display: inline-block;
+    height: 50px;
+    padding: 0 20px;
+    background-color: #ebebeb;
+    border: none;
+    font-size: 1rem;
+    color: #ebebeb;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.CSS>p{
+    color: #ebebeb;
+}
+.CSS_input{
+    color: var(--color--quinto);
+    font-size: 20px;
+}
+
 
 /* ----------------- section parciales --------------- */
+.container_parciales{
+    background-color: var(--color--sexto);
+}
 .parciales{
     display: grid;
     padding: 10px;
@@ -84,7 +158,7 @@ main{
     margin: 5px;
     border-radius: 5px;
 
-    background-color: var(--color--terciario);
+    background-color: #fff;
 }
 
 
@@ -96,7 +170,7 @@ main{
     padding: 10px;
     align-items: center;
     justify-content: center;
-    background-color: var(--color--principal);
+    background-color: var(--color--terciario);
 }
 
 .footer_title{

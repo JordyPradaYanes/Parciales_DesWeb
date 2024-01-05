@@ -6,88 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parciales Wilder</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .Puntos:hover,.CSS_input:hover{
+            background-color: #f1ddce;
+            transition: 0.5s;
+        }
+        main{
+            background-color: rgb(220, 220, 220);
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <nav class="nav">
             <a href="#Inicio"><i class="fa-solid fa-house"></i>
-                <p>Inicio</p>
+                Inicio
             </a>
             <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                <p>HTML5</p>
+                HTML5
             </a>
             <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
-                <p>CSS3</p>
+                CSS3
             </a>
             <a href="#Javascript"><i class="fa-solid fa-fire"></i>
-                <p>Javascript</p>
+                Javascript
             </a>
             <a href="#Usuario"><i class="fa-solid fa-user"></i>
-                <p>Usuario</p>
+                Usuario
             </a>
         </nav>
     </header>
     <main>
         <!-- ****HTML****
-        <h2>¿Qué es HTML5?</h2>
-        <section class="html" id="HTML5">
-            <div>
-                <p>HTML5 es la quinta versión del lenguaje de marcado estándar para documentos web y la estructura de
-                    contenido en la World Wide Web. Introduce una serie de nuevas características semánticas, de
-                    conectividad y de reproducción multimedia que mejoran significativamente la experiencia del usuario
-                    en la web.</p>
-                <br>
-                <p>Algunas de las características clave de HTML5 incluyen nuevas etiquetas semánticas como
-                    &lt;header&gt;, &lt;footer&gt;, &lt;nav&gt;, y &lt;article&gt;, soporte integrado para audio y
-                    video, gráficos vectoriales con &lt;svg&gt;, entre otras.</p>
-            </div>
-            <div>
-                <h3>Etiquetas HTML5</h3>
-                <p>Algunas etiquetas HTML5 importantes son &lt;section&gt;, &lt;aside&gt;, &lt;main&gt;, &lt;div&gt;,
-                    &lt;a&gt;, etc.</p>
-            </div>
-            <div>
-                <h3>Tipos de Input</h3>
-                <p>HTML5 introduce nuevos tipos de input como email, url, number, date, range, color, entre otros, que
-                    proporcionan una experiencia de usuario más rica y facilitan la validación de datos en formularios.
-                </p>
-            </div>
-        </section> -->
+
 
         <!-- ****CSS**** -->
-        <!-- <h2>¿Qué es CSS3?</h2>
-        <section class="css" id="CSS3">
-            <div>
-                <h3>¿Qué es FlexBox?</h3>
-                <p>Flexbox es un módulo de diseño de CSS3 que proporciona un sistema más eficiente para organizar
-                    elementos en un contenedor, permitiendo un diseño más flexible y responsive.</p>
-            </div>
-            <div>
-                <h3>Cómo utilizar Grid</h3>
-                <p>CSS Grid Layout es una herramienta de diseño bidimensional en CSS3 que permite crear diseños más
-                    complejos y estructurados, especialmente útil para diseños de tipo tabla.</p>
-            </div>
-        </section> -->
+        <section class="CSS">
+            <h2>Flexbox y Grid</h2>
+            <p>En esta pagina encontraras todos los conocimientos que debes de tener para Flexbox y css Grid</p>
+            <a href="https://layout.bradwoods.io/"><button class="CSS_input">Toca aquí</button></a>
+        </section>
 
         <!-- ****JAVASCRIPT**** -->
-        <!-- <h2>¿Qué es Javascript?</h2>
-        <section class="javascript" id="Javascript">
-            <div>
-                <p>Javascript es un lenguaje de programación de alto nivel, interpretado y orientado a objetos. Se
-                    utiliza principalmente para crear contenido dinámico e interactivo en páginas web, permitiendo la
-                    manipulación del DOM, manejo de eventos, comunicación con el servidor, entre otros.</p>
-            </div>
-            <div>
-                <h3>¿Qué son los JSON?</h3>
-                <p>JSON (JavaScript Object Notation) es un formato de intercambio de datos ligero y fácil de leer. Se
-                    utiliza comúnmente para enviar datos entre un servidor y un navegador web como una alternativa a
-                    XML.</p>
-            </div>
-        </section> --> 
+
 
         <!-- ****Parciales**** -->
-        <h2 style="margin: 5px;">Parciales Desarrollo Web_1</h2>
+        <div class="container_parciales">
+            <h2 style="margin: 5px;">Parciales Desarrollo Web_1</h2>
         <section class="parciales" id="Usuario">
             <div class="Puntos">
                 <a href="html/Parcial_1.html"><i class="fa-solid fa-folder-open"></i>
@@ -127,6 +93,7 @@
             </div>
 
         </section>
+        </div>
     </main>
 
     <aside>
@@ -152,12 +119,13 @@
                                 class="nav_links">CSS3</a>
                         </li>
                         <li class="nav_items">
-                            <a href="https://www.java.com/es/download/help/whatis_java.html"><i class="fa-brands fa-java"
-                                    style="color: #c70000;"></i></a>
+                            <a href="https://www.java.com/es/download/help/whatis_java.html"><i
+                                    class="fa-brands fa-java" style="color: #c70000;"></i></a>
                             <a href="https://www.java.com/es/download/help/whatis_java.html" class="nav_links">JAVA</a>
                         </li>
                         <li class="nav_items">
-                            <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"><i
+                            <a
+                                href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"><i
                                     class="fa-brands fa-js" style="color: #f4ee3e; padding-left: 20px;"></i></a>
                             <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"
                                 class="nav_links">JAVASCRIPT</a>
@@ -178,7 +146,7 @@
             <h3 class="footer_copyright">Derechos reservados &copy; Jordy-Prada</h3>
         </section>
     </footer>
-
+    <script src="Js/sttilos.js"></script>
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
 </body>
 

@@ -4,11 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primer Punto</title>
+    <title>Punto dos</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <a href="index.html" class="inicio">Inicio</a>
+    <header>
+        <nav class="nav">
+            <a href="../index.html"><i class="fa-solid fa-house"></i><p>Inicio</p></a>
+            <a href=""><i class="fa-brands fa-html5"></i><p>HTML5</p></a>
+            <a href=""><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></a>
+            <a href=""><i class="fa-solid fa-fire"></i><p>Parciales</p></a>
+            <a href=""><i class="fa-solid fa-user"></i><p>Usuario</p></a>
+        </nav>
+    </header>
     <div>
         <label for="num">Ingrese el numero de la tabla de multiplicar que desea saber:</label>
         <input type="text" id="num" placeholder="Ingrese un numero">
@@ -27,6 +36,7 @@
         <div id="tabla">
         </div>
     </div>
+    
     <script>
         const num = document.getElementById("num");
         const num_2 = document.getElementById("num2");
@@ -50,6 +60,7 @@
             tabla.innerHTML = mostrar;
         })
     </script>
+    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

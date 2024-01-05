@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@300;500;900&display=swap');
+
+:root{
+    --color--principal: #0A082D;
+    --color--secundario: #16446A;
+    --color--terciario:  #72AFC1;
+    --color--cuarto: #1D1B1C;
+    --color--letras--footer: rgb(255, 255, 255);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+p{
+    font-family: 'Poppins';
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    cursor: pointer;
+}
+
+.li_none{
+    list-style: none;
+    margin: 0 10px;
+}
+
+main{
+    height: 100vh;
+    padding: 10px 20px;
+    text-align: justify;
+}
+
+/*----------------- Estilos del navegador -----------------------*/
+.nav {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color--secundario);
+}
+
+.nav a {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Evita el subrayado de los enlaces */
+}
+
+.nav a i {
+    margin-right: 5px;
+}
+
+/* Estilos específicos para los párrafos dentro de los enlaces */
+.nav a p {
+    margin: 0; /* Ajusta el margen a tu gusto */
+    padding: 5px; /* Ajusta el relleno a tu gusto */
+    background-color: var(--color--secundario);
+    color: white; /* Ajusta el color del texto si es necesario */
+}
+
+/* ----------------- section parciales --------------- */
+.parciales{
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    grid-row: repeat(6,200px);
+}
+.Puntos{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+
+    margin: 5px;
+    border-radius: 5px;
+
+    background-color: var(--color--terciario);
+}
+
+
+/*--------------------- footer -------------------*/
+
+
+.footer {
+    margin: auto;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color--principal);
+}
+
+.footer_title{
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.footer_title, .footer_info{
+    color: var(--color--letras--footer);
+    margin-top: 50px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.footer_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--color--letras--footer);
+    padding-bottom: 20px;
+}
+
+.nav--footer{
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+}
+
+.nav_items{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+}
+.nav_items i{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 25px;
+    margin: 0 10px;
+}
+.nav_items .nav_links{
+    margin-top: 10px;
+    color: var(--color--letras--footer);
+}
+
+.nav_link--footer{
+    display: flex;
+    margin: 0;
+    margin-right: 20px;
+    flex-wrap: wrap;    
+}
+
+.footer_copy{
+    --padding-container: 30px 0;
+    text-align: center;
+    color: var(--color--letras--footer);
+}
+
+.footer_copyright{
+    font-weight: 300;
+}
+
+.footer_icons{
+    margin-bottom: 10px;
+}
+
+.footer_img{
+    width: 30px;
+}
+
+.footer_social{
+    margin: 10px 0;
+}
+
+
+/*----------------- section HTML5 -------------------*/
+/* 
+.html{
+    display: flex;
+    flex-direction: column;
+}
+.html div{
+    margin: 10px;
+} */

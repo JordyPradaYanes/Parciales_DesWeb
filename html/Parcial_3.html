@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto tres</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --fondo--página: rgb(224, 224, 224);
+            --fondo--targetas: rgb(255, 255, 255);
+            --lineas--porcentaje--oscura: rgb(0, 174, 255);
+            --linea--porcentaje--clara: rgb(135, 217, 255);
+            --color--campana: rgb(255, 0, 0);
+            --color--perdida: rgb(255, 25, 25);
+            --color--ganancia: rgb(1, 154, 1);
+            --color--usuario: rgb(0, 128, 0);
+            --color--progreso: rgb(255, 165, 0);
+            --color--dinero: rgb(0, 0, 255);
+            --color--titulo: rgb(134, 134, 134);
+            --color--letra: rgb(173, 169, 169);
+        }
+
+        html {
+            background-color: var(--fondo--página);
+            box-sizing: border-box;
+        }
+
+        main {
+            width: 100%;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-row: repeat(4, 200px);
+        }
+
+        .figure {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly; /* Distribuir los elementos verticalmente */
+            align-items: flex-start; /* Alinear los elementos a la izquierda */
+            background-color: var(--fondo--targetas);
+            height: 180px;
+            margin: 5px;
+            padding: 10px;
+            position: relative; /* Añadir position relative para establecer el position absolute del div hijo */
+        }
+
+        .targetOne {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .targetOne i, .targetOne p{
+            margin-right: 5px;
+            text-align: center;
+        }
+        
+        .p3{
+            color: var(--color--letra);
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 10px;
+        }
+
+        .fa-arrow-down , .p3.porr{
+            color: var(--color--perdida);
+            font-size: 10px;
+        }
+        .fa-arrow-up , .p3.por{
+            color: var(--color--ganancia);
+            font-size: 10px;
+        }
+        
+
+        
+
+        .figure i.bell-icon,i.user-icon,i.progress-icon,i.dollar-icon {
+            position: absolute;
+            margin: 15px;
+            top: 0;
+            right: 0;
+            padding: 15px;
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            border-radius: 50%;
+        }
+        .bell-icon{
+            background-color: var(--color--campana);
+            color: var(--fondo--targetas);
+        }
+        .user-icon{
+            background-color: var(--color--usuario);
+            color: var(--fondo--targetas);
+        }
+        .progress-icon{
+            background-color: var(--color--progreso);
+            color: var(--fondo--targetas);
+        }
+        .dollar-icon{
+            background-color: var(--color--dinero);
+            color: var(--fondo--targetas);
+        }
+
+        .p1{
+            text-transform: uppercase;
+            color: var(--color--titulo);
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .porcent{
+            width: 100%;
+            display: flex;
+            margin-bottom: -40px;
+        }
+
+        p.line{
+            width: 75.5%;
+            border-bottom: 5px solid var(--lineas--porcentaje--oscura);
+        }
+        p.line.two{
+            width: 24.5%;
+            border-bottom: 5px solid var(--linea--porcentaje--clara);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <a href="../index.html"><i class="fa-solid fa-house"></i>
+                <p>Inicio</p>
+            </a>
+            <a href="#HTML5"><i class="fa-brands fa-html5"></i>
+                <p>HTML5</p>
+            </a>
+            <a href=""><i class="fa-brands fa-css3-alt"></i>
+                <p>CSS3</p>
+            </a>
+            <a href=""><i class="fa-solid fa-fire"></i>
+                <p>Parciales</p>
+            </a>
+            <a href=""><i class="fa-solid fa-user"></i>
+                <p>Usuario</p>
+            </a>
+        </nav>
+    </header>
+
+    <main class="cuerpo">
+        <div class="content">
+            <div class="figure">
+                <p class="p1">budget</p>
+                <p class="p2">$24,000</p>
+                <i class="fa-sharp fa-solid fa-bell bell-icon"></i>
+                <div class="targetOne">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    <p class="p3 porr">12%</p>
+                    <p class="p3">SINCE LAST MONTH</p>
+                </div>
+            </div>
+            <div class="figure">
+                <p class="p1">TOTAL CUSTOMERS </p>
+                <p class="p2">$1,600</p>
+                <i class="fa-solid fa-user-group user-icon"></i>
+                <div class="targetOne">
+                    <i class="fa-solid fa-arrow-up"></i>
+                    <p class="p3 por">16%</p>
+                    <p class="p3">SINCE LAST MONTH</p>
+                </div>
+            </div>
+            <div class="figure">
+                <p class="p1">TASKS PROGRESS</p>
+                <p class="p2">75.5%</p>
+                <div class="porcent">
+                    <p class="line"></p>
+                    <p class="line two"></p>
+                </div>
+                <br>
+                <i class="fa-solid fa-square-poll-vertical progress-icon"></i>
+            </div>
+            <div class="figure">
+                <p class="p1">TOTAL PROFIT</p>
+                <p class="p2">$23,200</p>
+                <i class="fa-sharp fa-solid fa-dollar-sign dollar-icon"></i>
+                <div>
+                    <p style="color: var(--color--letra); font-family: 'Times New Roman', Times, serif;">contenido</p>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+    </main>
+</body>
+
+</html>

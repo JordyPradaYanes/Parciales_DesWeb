@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto cuatro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body onload="puntero()">
+    <header>
+        <nav class="nav">
+            <a href="../index.html"><i class="fa-solid fa-house"></i><p>Inicio</p></a>
+            <a href=""><i class="fa-brands fa-html5"></i><p>HTML5</p></a>
+            <a href=""><i class="fa-brands fa-css3-alt"></i><p>CSS3</p></a>
+            <a href=""><i class="fa-solid fa-fire"></i><p>Parciales</p></a>
+            <a href=""><i class="fa-solid fa-user"></i><p>Usuario</p></a>
+        </nav>
+    </header>
+    <br>
+    <div>
+        <div>
+            <label style="margin-right: 10px" for="name1">Ingrese: </label>
+            <input style="height: 15px" type="text" id="name1" placeholder="Ingrese aqui" onblur="calcular()" />
+            <span id="span1"></span>
+        </div>
+        <div>
+            <label style="margin-right: 10px" for="name2">Ingrese: </label>
+            <input style="height: 15px" type="text" id="name2" placeholder="Ingrese aqui" disabled onblur="calcular()" />
+            <span id="span2"></span>
+        </div>
+    </div>
+    <button id="btn">enviar</button>
+
+    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const name1 = document.getElementById("name1");
+        const name2 = document.getElementById("name2");
+        const btn = document.getElementById("btn");
+        const span1 = document.getElementById("span1");
+        const span2 = document.getElementById("span2");
+        const limpiar = document.getElementById("limpiar");
+
+        function puntero() {
+            name1.focus();
+        }
+
+        btn.addEventListener("click", () => {
+            array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var num = String(name1.value);
+            var num2 = num.split("");
+
+            for (let i = 0; i < array.length; i++) {
+                for (let j = 0; j < num2.length; j++) {
+                    if (array[i] == num2[j]) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Error, no puede llevar numeros",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        name2.disabled = true;
+                    } else {
+                        name2.disabled = false;
+                    }
+                }
+            }
+        });
+
+        function calcular(){
+            if(name1.value==""){
+                span1.innerHTML="Esta caja no puede estar vacia";
+                name1.focus();
+            }else{
+                span1.innerHTML="";
+            }
+
+            if(name2.value==""){
+                span2.innerHTML="Esta caja no puede estar vacia";
+                name2.focus();
+            }else{
+                span2.innerHTML="";
+            }
+        }
+    </script>
+</body>
+
+</html>

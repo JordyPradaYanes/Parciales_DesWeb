@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto ocho</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        p{
+            font-family: 'Times New Roman', Times, serif;
+        }
+        main{
+            height: 100%;
+            background-color: grey;
+        }
+        .container {
+            padding: 20px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        h3,
+        h2 {
+            margin: 15px 0;
+        }
+        h2{
+            color: black;
+            font-size: 35px;
+        }
+        h3{
+            font-size: 15px;
+            margin-bottom: -15px;
+        }
+        
+        
+
+        .post_one {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 600px;
+            width: 400px;
+            margin: 25px;
+            background-color: white;
+            border-radius: 10px;
+            -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            
+        }
+
+        img {
+            align-self: flex-start;
+            width: 100%;
+            height: 250px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        #tarjeta1 {
+            color: rgb(255, 0, 98);
+        }
+        #tarjeta2{
+            color: rgb(255, 77, 12);
+        }
+        #tarjeta3{
+            color: rgb(17, 189, 17);
+        }
+        .footer1.one{
+            background-color: rgb(255, 0, 98);
+        }
+        .footer1.two{
+            background-color: rgb(255, 77, 12);
+        }
+        .footer1.three{
+            background-color: rgb(17, 189, 17);
+        }
+
+        .letras {
+            align-self: center;
+            margin: 10px 0;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .division{
+            width: 0.1px;
+            height: 100%;
+            background-color: rgb(94, 94, 94);
+        }
+
+        .footer1 {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            align-self: flex-end;
+            text-align: center;
+            color: #fff;
+            justify-content: space-around;
+            margin: 0;
+            border-radius: 0 0 10px 10px;
+        }
+        .footer1 .alineacionV{
+            align-self: center;
+        }
+        .footer1 p {
+            margin: 5px;
+        }
+        .footer1 .rec{
+            margin-top: -5px;
+        }
+
+        .footer1 .num{
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <a href="../index.html"><i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+            <a href="#HTML5"><i class="fa-brands fa-html5"></i>
+                HTML5
+            </a>
+            <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
+                CSS3
+            </a>
+            <a href="#Javascript"><i class="fa-solid fa-fire"></i>
+                Javascript
+            </a>
+            <a href="form_User.html"><i class="fa-solid fa-user"></i>
+                Usuario
+            </a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="post_one">
+                <img src="https://tysmagazine.com/wp-content/uploads/singapore-river-255116_960_720.jpg" alt="">
+                <div class="letras">
+                    <h3 id="tarjeta1">4 days ago</h3>
+                    <h2>Post One</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, debitis ducimus ut recusandae quasi tempore velit voluptas deserunt!</p>
+                </div>
+
+                <div class="footer1 one">
+                    <div class="alineacionV">
+                        <p class="num">4<sup>m</sup></p>
+                        <p class="rec">Ream</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">5123</p>
+                        <p class="rec">Views</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">32</p>
+                        <p class="rec">comments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post_one">
+                <img src="https://www.lavanguardia.com/files/content_image_mobile_filter/uploads/2022/04/22/626268aa4acfb.jpeg" alt="">
+                <div class="letras">
+                    <h3 id="tarjeta2">1 week ago</h3>
+                    <h2>Post Two</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto ducimus placeat fugit sequi a repellendus eius aperiam cupiditate.</p>
+                </div>
+
+                <div class="footer1 two">
+                    <div class="alineacionV">
+                        <p class="num">7<sup>m</sup></p>
+                        <p class="rec">Ream</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">7152</p>
+                        <p class="rec">Views</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">21</p>
+                        <p class="rec">comments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post_one">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc2OCOz38XGM8R34CoZCQmRjDWw75NDMfTYw&usqp=CAU" alt="">
+                <div class="letras">
+                    <h3 id="tarjeta3">3 week ago</h3>
+                    <h2>Post Three</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias distinctio natus saepe ad, tempora accusantium quod explicabo? Debitis?</p>
+                </div>
+
+                <div class="footer1 three">
+                    <div class="alineacionV">
+                        <p class="num">5<sup>m</sup></p>
+                        <p class="rec">Ream</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">3021</p>
+                        <p class="rec">Views</p>
+                    </div>
+
+                    <div class="division"></div>
+
+                    <div class="alineacionV">
+                        <p class="num">15</p>
+                        <p class="rec">comments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../Js/sttilos.js"></script>
+    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

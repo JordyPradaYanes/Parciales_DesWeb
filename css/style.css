@@ -102,6 +102,7 @@ h2{
 }
 
 /* Estilos específicos para los párrafos dentro de los enlaces */
+
 .nav a p {
     margin: 0; /* Ajusta el margen a tu gusto */
     padding: 5px; /* Ajusta el relleno a tu gusto */

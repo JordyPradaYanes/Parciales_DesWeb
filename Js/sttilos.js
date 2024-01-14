@@ -6,6 +6,7 @@ window.addEventListener("scroll",()=>{
 let enlaces_header = document.querySelectorAll(".enlaces-header")[0];
 let ico_hamburguer = true;
 let main = document.querySelector("main");
+let user = document.getElementsByClassName("fa-user");
 
 document.querySelectorAll(".hamburgueri")[0].addEventListener("click", function(){
     if(ico_hamburguer){
@@ -17,10 +18,14 @@ document.querySelectorAll(".hamburgueri")[0].addEventListener("click", function(
         document.querySelectorAll(".hamburgueri")[0].style.color="#000";
         ico_hamburguer = true;
         main.style.display="";
-    }
+    }   
 
     enlaces_header.classList.toggle("hamburgueropen");
+})
 
+user.addEventListener("click",()=>{
+    ico_hamburguer=true;
+    main.style.display="";
 })
 
 document.querySelectorAll(".enlaces-header")[0].addEventListener("click", function(){

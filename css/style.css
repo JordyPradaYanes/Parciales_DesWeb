@@ -418,6 +418,7 @@ h2{
     }
 
     .nav .enlaces-header a:hover {
-        color: var(--color--sexto);
+        color: var(--color--cuarto);
+        background-color: var(--color--principal);
     }
 }

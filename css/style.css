@@ -51,15 +51,41 @@ h2{
     top: 0;
     left: 0;
     height: 60px;
-    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: var(--color--secundario);
 }
+.enlaces-header{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 100vw;
+    transition: all ease-in-out .6s;
+}
+.enlaces-header a{
+    color: white;
+}
+.hamburguer {
+    width: 100vw;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+    z-index: 100;
+    display: none;
+}
+
+.hamburguer > i {
+    font-size: 25px;
+    margin-right: 50px;
+    line-height: 80px;
+}
+.hamburguer > p{
+    display: flex;
+    align-items: center;
+}
 
 .nav a {
-    color: white;
     position: relative;
     display: flex;
     align-items: center;
@@ -360,3 +386,52 @@ h2{
 .html div{
     margin: 10px;
 } */
+
+@media screen  and (max-width:700px) {
+    
+    /* BARRA MENU HAMBURGUESA */
+
+    .hamburguer {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .enlaces-header {
+        position: fixed;
+        background-color: var(--color--cuarto);
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        clip-path: circle(0.0% at 0 0);
+    }
+    .enlaces-header a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border: 1px solid black;
+        padding: 0 80px;
+        border-radius: 5px;
+        background-color: var(--color--principal);
+    }
+    .nav{
+        background-color: rgb(191, 191, 191);
+    }
+
+    .nav .hamburgueropen {
+        clip-path: circle(150% at 0 0);
+        
+    }
+
+    .nav .enlaces-header a {
+        color: var(--color--cuarto);
+    }
+
+    .nav .enlaces-header a:hover {
+        color: var(--color--sexto);
+    }
+}

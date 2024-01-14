@@ -16,13 +16,14 @@
         height: 100vh;
     }
     .codetheworld-io{
-        height: 80vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+        gap: 10px 20px;
         align-items: center;
+        justify-content: center;
     }
-    .codetheworld-io>a{
+    .codetheworld-io a{
         display: flex;
         justify-content: center;
         text-align: center;
@@ -30,7 +31,6 @@
         border-radius: 50%;
         box-sizing: border-box;
         background-color: #fff;
-        width: 100px;
         padding: 30px;
         height: 100px;
         text-decoration: none;
@@ -41,7 +41,7 @@
         -webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
     }
 
-    .codetheworld-io>a:hover{
+    .codetheworld-io a:hover{
         background: var(--color);
         color: #050801;
         box-shadow: 0 0 5px var(--color),
@@ -81,18 +81,26 @@
     </header>
     <main>
         <div class="codetheworld-io">
-            <a href="#" style="--color: #0072B1;">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="#" style="--color:#E1306C;">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" style="--color: #FF0050;">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a href="#" style="--color: #4267B2;">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
+            <div>
+                <a href="#" style="--color: #0072B1;">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#" style="--color:#E1306C;">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#" style="--color: #FF0050;">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#" style="--color: #4267B2;">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
         </div>
     </main>
     <script src="../Js/sttilos.js"></script>

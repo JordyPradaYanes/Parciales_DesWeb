@@ -7,7 +7,6 @@
     --color--terciario:  #262559;
     --color--cuarto: #E8E8E8;
     --color--quinto: #3b5a64;
-    --color--sexto: #D99B5E;
     --color--letras--footer: rgb(255, 255, 255);
 }
 
@@ -279,10 +278,8 @@ h2{
     flex-direction: column;
     text-align: center;
     padding: 5px;
-
     margin: 5px;
     border-radius: 5px;
-
     background-color: #fff;
 }
 

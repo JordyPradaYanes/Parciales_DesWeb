@@ -407,7 +407,6 @@ h2{
 
     .nav .hamburgueropen {
         clip-path: circle(150% at 0 0);
-        
     }
 
     .nav .enlaces-header a {

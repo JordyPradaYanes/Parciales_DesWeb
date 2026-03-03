@@ -1,124 +1,360 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto Cinco - Registro</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .container-calculadora {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 700px;
+        margin: 40px auto;
+        text-align: center;
+      }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punto cinco</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+      .container-calculadora h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text; /* standard property */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-<body onload="puntero()">
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        text-align: left;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .input-group.full-width {
+        grid-column: span 2;
+      }
+
+      .input-group label {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .input-group input:not([type="radio"]) {
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--glass-border);
+        background: rgba(15, 23, 42, 0.6);
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+
+      .input-group input:not([type="radio"]):focus {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 10px var(--accent-glow);
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        height: 100%;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--glass-border);
+        background: rgba(15, 23, 42, 0.6);
+      }
+
+      .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      .btn-modern {
+        padding: 14px 30px;
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px var(--accent-glow);
+        width: 100%;
+        margin-top: 25px;
+        grid-column: span 2;
+      }
+
+      .btn-modern:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(129, 140, 248, 0.6);
+      }
+
+      #mostrar {
+        display: none;
+        margin-top: 30px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: left;
+      }
+
+      #mostrar.visible {
+        display: block;
+      }
+
+      #mostrar h3 {
+        color: #10b981;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+        padding-bottom: 10px;
+      }
+
+      #mostrar p {
+        margin: 8px 0;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      #mostrar p strong {
+        color: var(--text-secondary);
+        display: inline-block;
+        width: 100px;
+      }
+
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .input-group.full-width,
+        .btn-modern {
+          grid-column: span 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body onload="puntero()">
     <header>
-        <nav class="nav">
-            <div class="enlaces-header">
-                <a href="../index.html"><i class="fa-solid fa-house"></i>
-                    Inicio
-                </a>
-                <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                    HTML5
-                </a>
-                <a href="../index.html#CSS3"><i class="fa-brands fa-css3-alt"></i>
-                    CSS3
-                </a>
-                <a href="#Javascript"><i class="fa-solid fa-fire"></i>
-                    Javascript
-                </a>
-                <a href="../index.html#parciales"><i class="fa-solid fa-book-open-reader"></i>
-                    Parciales
-                </a>
-                <a href="../html/form_User.html"><i class="fa-solid fa-user"></i>
-                    Usuario
-                </a>
-            </div>
-            <div class="hamburguer">
-                <i class="fa-solid fa-bars hamburgueri"></i>
-                <p>Jordy Prada</p>
-            </div>
-        </nav>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html"
+            ><i class="fa-solid fa-house"></i>
+            Inicio
+          </a>
+          <a href="#HTML5"
+            ><i class="fa-brands fa-html5"></i>
+            HTML5
+          </a>
+          <a href="../index.html#CSS3"
+            ><i class="fa-brands fa-css3-alt"></i>
+            CSS3
+          </a>
+          <a href="#Javascript"
+            ><i class="fa-solid fa-fire"></i>
+            Javascript
+          </a>
+          <a href="../index.html#parciales"
+            ><i class="fa-solid fa-book-open-reader"></i>
+            Parciales
+          </a>
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i>
+            Usuario
+          </a>
+        </div>
+        <div class="hamburguer">
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
     </header>
     <main>
-        <br>
-        <form action="">
-            <label for="name">Nombres: </label>
-            <input id="name" type="text">
-            <br>
-            <label for="apellido">Apellidos: </label>
-            <input id="apellido" type="text">
-            <br>
-            <label for="edad">Edad: </label>
-            <input id="edad" type="text">
-            <br>
-            <label for="sexo">sexo: </label>
-            <input type="radio" name="sexo" id="f">
-            <input type="radio" name="sexo" id="m">
-            <br>
-            <label for="email">Email: </label>
-            <input id="email" type="email">
-            <br>
-            <label for="password1">Contraseña: </label>
-            <input id="password1" type="password">
-            <br>
-            <label for="cPassword">Confirmar Contraseña: </label>
-            <input id="cPassword" type="password">
-
-            <button id="btn">Click</button>
-            <br>
-            <div id="mostrar">
-
+      <section class="container-calculadora">
+        <h2>Formulario de Registro</h2>
+        <form action="" id="registroForm">
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="name">Nombres:</label>
+              <input id="name" type="text" placeholder="Ej: Jordy Daniel" />
             </div>
+
+            <div class="input-group">
+              <label for="apellido">Apellidos:</label>
+              <input id="apellido" type="text" placeholder="Ej: Prada Yanes" />
+            </div>
+
+            <div class="input-group">
+              <label for="edad">Edad:</label>
+              <input id="edad" type="number" placeholder="Ej: 21" />
+            </div>
+
+            <div class="input-group">
+              <label>Sexo:</label>
+              <div class="radio-group">
+                <label
+                  ><input type="radio" name="sexo" value="Femenino" id="f" />
+                  Femenino</label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="sexo"
+                    value="Masculino"
+                    id="m"
+                    checked
+                  />
+                  Masculino</label
+                >
+              </div>
+            </div>
+
+            <div class="input-group full-width">
+              <label for="email">Email:</label>
+              <input id="email" type="email" placeholder="correo@ejemplo.com" />
+            </div>
+
+            <div class="input-group">
+              <label for="password1">Contraseña:</label>
+              <input id="password1" type="password" placeholder="••••••••" />
+            </div>
+
+            <div class="input-group">
+              <label for="cPassword">Confirmar Contraseña:</label>
+              <input id="cPassword" type="password" placeholder="••••••••" />
+            </div>
+
+            <button id="btn" class="btn-modern">Registrar Usuario</button>
+          </div>
         </form>
+
+        <div id="mostrar"></div>
+      </section>
     </main>
 
-    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const name1 = document.getElementById("name");
-        const app = document.getElementById("apellido");
-        const edad = document.getElementById("edad");
-        const email = document.getElementById("email");
-        const pass = document.getElementById("password1");
-        const pass2 = document.getElementById("cPassword");
-        const btn = document.getElementById("btn");
-        const mos = document.getElementById("mostrar");
+      const name1 = document.getElementById("name");
+      const app = document.getElementById("apellido");
+      const edad = document.getElementById("edad");
+      const email = document.getElementById("email");
+      const pass = document.getElementById("password1");
+      const pass2 = document.getElementById("cPassword");
+      const btn = document.getElementById("btn");
+      const mos = document.getElementById("mostrar");
 
-        function puntero() {
-            name1.focus();
+      const swalDarkConfig = {
+        background: "#1e293b",
+        color: "#f8fafc",
+        confirmButtonColor: "#6366f1",
+      };
+
+      function puntero() {
+        name1.focus();
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Verificar inputs vacios correctamente usando trim()
+        if (
+          name1.value.trim() === "" ||
+          app.value.trim() === "" ||
+          edad.value.trim() === "" ||
+          email.value.trim() === "" ||
+          pass.value.trim() === "" ||
+          pass2.value.trim() === ""
+        ) {
+          Swal.fire({
+            ...swalDarkConfig,
+            position: "top-end",
+            icon: "error",
+            title: "Campos Incompletos",
+            text: "Por favor, complete todos los campos requeridos.",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          mos.classList.remove("visible");
+        } else if (pass.value === pass2.value) {
+          Swal.fire({
+            ...swalDarkConfig,
+            position: "top-end",
+            icon: "success",
+            title: "Registro Exitoso",
+            text: "Las contraseñas coinciden y validación correcta.",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+
+          // Obtener el radio seleccionado
+          const sexoSeleccionado = document.querySelector(
+            'input[name="sexo"]:checked',
+          ).value;
+
+          mos.classList.add("visible");
+          mos.innerHTML = `
+                    <h3>Resumen del Perfil Creado</h3>
+                    <p><strong>Nombres:</strong> ${name1.value}</p>
+                    <p><strong>Apellidos:</strong> ${app.value}</p>
+                    <p><strong>Edad:</strong> ${edad.value} años</p>
+                    <p><strong>Sexo:</strong> ${sexoSeleccionado}</p>
+                    <p><strong>Email:</strong> ${email.value}</p>
+                    <p><strong>Password:</strong> ${pass.value.replace(/./g, "*")}</p>
+                `;
+
+          // Limpiar form
+          document.getElementById("registroForm").reset();
+        } else {
+          Swal.fire({
+            ...swalDarkConfig,
+            position: "top-end",
+            icon: "error",
+            title: "Error de Contraseña",
+            text: "Las contraseñas no coinciden. Inténtalo de nuevo.",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          mos.classList.remove("visible");
+          pass.value = "";
+          pass2.value = "";
+          pass.focus();
         }
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            if (name1.value == "" || app.value == "" || edad.value == "" || email.value == "" || pass == "" || pass2 == "") {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "Error, complete todos los campos",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            } else if (pass.value == pass2.value) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Las contraseñas son iguales",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                mos.innerHTML = "Su nombre es: " + name1.value + "<br>" + "Su apelliido es: " + app.value + "<br>" + "Su email es: " + email.value + "<br>" + "Su contraseña es: " + pass.value + "<br>";
-            } else {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "error",
-                    title: "Error, las contraseñas no son las mismas",
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-                mos.innerHTML = "";
-            }
-        })
+      });
     </script>
     <script src="../Js/sttilos.js"></script>
-</body>
-
+  </body>
 </html>

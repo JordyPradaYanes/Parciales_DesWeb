@@ -1,244 +1,325 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario</title>
-    <link rel="stylesheet" href="../css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usuario - Inicio de Sesión</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
     <style>
-        html {
-            height: 100%;
+      html {
+        height: 100%;
+      }
+
+      /* Removido el body con background estático para heredar el radial-gradient oscuro de style.css */
+
+      .contenedor {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        /* Glassmorphism */
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        box-sizing: border-box;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .contenedor h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        text-align: center;
+        font-size: 2rem;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .contenedor .usuario {
+        position: relative;
+      }
+
+      .contenedor .usuario input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 1rem;
+        color: var(--text-primary);
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid var(--glass-border);
+        outline: none;
+        background: transparent;
+        font-family: "Inter", sans-serif;
+        transition: border-color 0.3s ease;
+      }
+
+      .contenedor .usuario input:focus {
+        border-bottom: 1px solid var(--accent-primary);
+      }
+
+      .contenedor .usuario label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 1rem;
+        color: var(--text-secondary);
+        pointer-events: none;
+        transition: 0.5s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .contenedor .usuario input:focus ~ label,
+      .contenedor .usuario input:valid ~ label {
+        top: -20px;
+        left: 0;
+        color: var(--accent-primary);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .contenedor form > button,
+      .contenedor form > a {
+        position: relative;
+        display: inline-block;
+        padding: 12px 20px;
+        color: var(--text-primary);
+        background: transparent;
+        font-size: 1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-top: 20px;
+        letter-spacing: 2px;
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+
+      .contenedor form > button:hover,
+      .contenedor a:hover {
+        background: var(--accent-primary);
+        color: #fff;
+        box-shadow:
+          0 0 5px var(--accent-primary),
+          0 0 25px var(--accent-primary),
+          0 0 50px var(--accent-primary),
+          0 0 100px var(--accent-primary);
+      }
+
+      .contenedor a span {
+        position: absolute;
+        display: block;
+      }
+
+      .contenedor a span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent-primary));
+        animation: btn-anim1 1.5s linear infinite;
+      }
+
+      @keyframes btn-anim1 {
+        0% {
+          left: -100%;
         }
 
-        body {
-            font-family: sans-serif;
-            background: linear-gradient(#141e30, #243b55);
+        50%,
+        100% {
+          left: 100%;
+        }
+      }
+
+      .contenedor a span:nth-child(2) {
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, var(--accent-primary));
+        animation: btn-anim2 1.5s linear infinite;
+        animation-delay: 0.375s;
+      }
+
+      @keyframes btn-anim2 {
+        0% {
+          top: -100%;
         }
 
-        .contenedor {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            padding: 40px;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, .5);
-            box-sizing: border-box;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-            border-radius: 10px;
+        50%,
+        100% {
+          top: 100%;
+        }
+      }
+
+      .contenedor a span:nth-child(3) {
+        right: -100%;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: linear-gradient(270deg, transparent, var(--accent-primary));
+        animation: btn-anim3 1.5s linear infinite;
+        animation-delay: 0.75s;
+      }
+
+      @keyframes btn-anim3 {
+        0% {
+          right: -100%;
         }
 
-        .contenedor h2 {
-            margin: 0 0 30px;
-            padding: 0;
-            color: #fff;
-            text-align: center;
+        50%,
+        100% {
+          right: 100%;
+        }
+      }
+
+      .contenedor a span:nth-child(4) {
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, var(--accent-primary));
+        animation: btn-anim4 1.5s linear infinite;
+        animation-delay: 1.125s;
+      }
+
+      @keyframes btn-anim4 {
+        0% {
+          bottom: -100%;
         }
 
-        .contenedor .usuario {
-            position: relative;
+        50%,
+        100% {
+          bottom: 100%;
         }
-
-        .contenedor .usuario input {
-            width: 100%;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 30px;
-            border: none;
-            border-bottom: 1px solid #fff;
-            outline: none;
-            background: transparent;
-        }
-
-        .contenedor .usuario label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            pointer-events: none;
-            transition: .5s;
-        }
-
-        .contenedor .usuario input:focus~label,
-        .contenedor .usuario input:valid~label {
-            top: -20px;
-            left: 0;
-            color: #03e9f4;
-            font-size: 12px;
-        }
-
-        .contenedor form>a {
-            position: relative;
-            display: inline-block;
-            padding: 10px 20px;
-            color: #03e9f4;
-            font-size: 16px;
-            text-decoration: none;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: .5s;
-            margin-top: 40px;
-            letter-spacing: 4px;
-        }
-
-        .contenedor a:hover {
-            background: #03e9f4;
-            color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px #03e9f4,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 100px #03e9f4;
-        }
-
-        .contenedor a span {
-            position: absolute;
-            display: block;
-        }
-
-        .contenedor a span:nth-child(1) {
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #03e9f4);
-            animation: btn-anim1 1s linear infinite;
-            /* animation-delay: .25s; */
-        }
-
-        @keyframes btn-anim1 {
-            0% {
-                left: -100%;
-            }
-
-            50%,
-            100% {
-                left: 100%;
-            }
-        }
-
-        .contenedor a span:nth-child(2) {
-            top: -100%;
-            right: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, #03e9f4);
-            animation: btn-anim2 1s linear infinite;
-            animation-delay: .25s;
-        }
-
-        @keyframes btn-anim2 {
-            0% {
-                top: -100%;
-            }
-
-            50%,
-            100% {
-                top: 100%;
-            }
-        }
-
-        .contenedor a span:nth-child(3) {
-            right: -100%;
-            bottom: 0;
-            height: 2px;
-            width: 100%;
-            background: linear-gradient(270deg, transparent, #03e9f4);
-            animation: btn-anim3 1s linear infinite;
-            animation-delay: .5s;
-        }
-
-        @keyframes btn-anim3 {
-            0% {
-                right: -100%;
-            }
-
-            50%,
-            100% {
-                right: 100%;
-            }
-        }
-
-        .contenedor a span:nth-child(4) {
-            bottom: -100%;
-            left: 0;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, #03e9f4);
-            animation: btn-anim4 1s linear infinite;
-            animation-delay: .75s;
-        }
-
-        @keyframes btn-anim4 {
-            0% {
-                bottom: -100%;
-            }
-
-            50%,
-            100% {
-                bottom: 100%;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="nav">
-            <div class="enlaces-header">
-                <a href="../index.html"><i class="fa-solid fa-house"></i>
-                    Inicio
-                </a>
-                <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                    HTML5
-                </a>
-                <a href="../index.html#CSS3"><i class="fa-brands fa-css3-alt"></i>
-                    CSS3
-                </a>
-                <a href="#Javascript"><i class="fa-solid fa-fire"></i>
-                    Javascript
-                </a>
-                <a href="../index.html#parciales"><i class="fa-solid fa-book-open-reader"></i>
-                    Parciales
-                </a>
-                <a href="../html/form_User.html"><i class="fa-solid fa-user"></i>
-                    Usuario
-                </a>
-            </div>
-            <div class="hamburguer">
-                <i class="fa-solid fa-bars hamburgueri"></i>
-                <p>Jordy Prada</p>
-            </div>
-        </nav>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html"
+            ><i class="fa-solid fa-house"></i>
+            Inicio
+          </a>
+          <a href="#HTML5"
+            ><i class="fa-brands fa-html5"></i>
+            HTML5
+          </a>
+          <a href="../index.html#CSS3"
+            ><i class="fa-brands fa-css3-alt"></i>
+            CSS3
+          </a>
+          <a href="#Javascript"
+            ><i class="fa-solid fa-fire"></i>
+            Javascript
+          </a>
+          <a href="../index.html#parciales"
+            ><i class="fa-solid fa-book-open-reader"></i>
+            Parciales
+          </a>
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i>
+            Usuario
+          </a>
+        </div>
+        <div class="hamburguer">
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
     </header>
     <main>
-        <div class="contenedor">
-            <h2>Inicio de sesión</h2>
-            <form action="">
-                <div class="usuario">
-                    <input type="text" name="" id="" required>
-                    <label for="">Correo</label>
-                </div>
-                <div class="usuario">
-                    <input type="password" name="" id="" required>
-                    <label for="">Contraseña</label>
-                </div>
-                <a href="">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Iniciar
-                </a>
-            </form>
-        </div>
+      <div class="contenedor">
+        <h2>Inicio de sesión</h2>
+        <form action="">
+          <div class="usuario">
+            <input type="text" name="" id="" required />
+            <label for="">Correo Institucional</label>
+          </div>
+          <div class="usuario">
+            <input type="password" name="" id="" required />
+            <label for="">Contraseña</label>
+          </div>
+
+          <!-- Submit button instead of anchor for better semantics -->
+          <button type="button" id="loginBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Ingresar
+          </button>
+        </form>
+      </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      const btn = document.getElementById("loginBtn");
+
+      const swalDarkConfig = {
+        background: "#1e293b",
+        color: "#f8fafc",
+        confirmButtonColor: "#6366f1",
+      };
+
+      btn.addEventListener("click", () => {
+        const inputs = document.querySelectorAll(".usuario input");
+        let isEmpty = false;
+
+        inputs.forEach((input) => {
+          if (input.value.trim() === "") isEmpty = true;
+        });
+
+        if (isEmpty) {
+          Swal.fire({
+            ...swalDarkConfig,
+            icon: "warning",
+            title: "Campos Vacíos",
+            text: "Por favor ingrese su correo y contraseña.",
+            timer: 3000,
+          });
+        } else {
+          Swal.fire({
+            ...swalDarkConfig,
+            icon: "success",
+            title: "Verificando...",
+            text: "Iniciando sesión segura.",
+            showConfirmButton: false,
+            timer: 2000,
+          }).then(() => {
+            // Limpiar campos simulando entrada existosa
+            inputs.forEach((input) => (input.value = ""));
+          });
+        }
+      });
+    </script>
+
     <script src="../Js/sttilos.js"></script>
-    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

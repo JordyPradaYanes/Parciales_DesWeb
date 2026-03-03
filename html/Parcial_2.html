@@ -1,11 +1,126 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punto dos</title>
+    <title>Punto Dos - Tabla Multiplicar</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .container-calculadora {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .container-calculadora h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #a5b4fc, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .input-group input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .btn-modern {
+            padding: 12px 30px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-modern:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(129, 140, 248, 0.6);
+        }
+
+        .results-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .results-container.visible {
+            display: block;
+        }
+
+        .results-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .results-container::-webkit-scrollbar-thumb {
+            background-color: var(--glass-border);
+            border-radius: 4px;
+        }
+
+        .warning-msg {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .tabla-item {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .tabla-item:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,48 +153,67 @@
         </nav>
     </header>
     <main>
-        <div>
-            <label for="num">Ingrese el numero de la tabla de multiplicar que desea saber:</label>
-            <input type="text" id="num" placeholder="Ingrese un numero">
-            <br>
-            <label for="num">Ingrese el numero hasta donde quiera llegar:</label>
-            <input type="text" id="num2" placeholder="Ingrese un numero">
-            <span id="error"></span>
-            <br>
-            <button id="btn">Enviar</button>
-        </div>
-        <div>
-            <div id="msj" style="display: flex; padding: 0 5px;">
-                <p id="cero"></p>
-                <span id="ciro" style="justify-content: center; text-align: center;"></span>
+        <section class="container-calculadora">
+            <h2>Generador de Tablas</h2>
+            <div class="input-group">
+                <label for="num">Número de la tabla (Ej. 5):</label>
+                <input type="number" id="num" placeholder="Ingrese el multiplicando">
+                
+                <label for="num2">Generar hasta el número (Ej. 10):</label>
+                <input type="number" id="num2" placeholder="Ingrese el límite multiplicador">
+                
+                <button id="btn" class="btn-modern">Generar Tabla</button>
             </div>
-            <div id="tabla">
+            
+            <div class="results-container" id="results-container">
+                <p class="warning-msg" id="warningMsg">Todo número multiplicado por cero es cero.</p>
+                <div id="tabla"></div>
             </div>
-        </div>
+        </section>
     </main>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const num = document.getElementById("num");
         const num_2 = document.getElementById("num2");
-        const cero = document.getElementById("cero");
+        const resultsContainer = document.getElementById("results-container");
         const tabla = document.getElementById("tabla");
         const btn = document.getElementById("btn");
-        const ciro = document.getElementById("ciro");
+
+        const swalDarkConfig = {
+            background: '#1e293b',
+            color: '#f8fafc',
+            confirmButtonColor: '#6366f1'
+        };
 
         btn.addEventListener("click", () => {
             var num1 = parseInt(num.value);
             var num2 = parseInt(num_2.value);
-            var mostrar = "";
-            for (let i = 1; i <= num2; i++) {
-                cero.innerHTML=num1+" * "+0+" = "+0;
-                ciro.innerHTML = "Todo numero nultiplicado por cero es cero"
 
-                var resultado = num1 * i;
-                mostrar += "<p>" + num1 + " * " + i + " = " + resultado + "</p>" + "<br>";
-                console.log(i);
+            if(isNaN(num1) || isNaN(num2)) {
+                Swal.fire({
+                    ...swalDarkConfig,
+                    icon: 'error',
+                    title: 'Campos Vacíos',
+                    text: 'Por favor, ingrese números válidos en ambos campos.',
+                    timer: 3000
+                });
+                return;
             }
+
+            resultsContainer.classList.add('visible');
+            var mostrar = "";
+
+            // El 0 explicitamente antes de iterar
+            mostrar += `<div class="tabla-item">${num1} x 0 = 0</div>`;
+
+            for (let i = 1; i <= num2; i++) {
+                var resultado = num1 * i;
+                mostrar += `<div class="tabla-item">${num1} x ${i} = ${resultado}</div>`;
+            }
+            
             tabla.innerHTML = mostrar;
-        })
+        });
     </script>
     <script src="../Js/sttilos.js"></script>
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>

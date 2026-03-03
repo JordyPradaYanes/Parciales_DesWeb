@@ -1,11 +1,115 @@
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punto Uno</title>
+    <title>Punto Uno - Operaciones Matemáticas</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .container-calculadora {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .container-calculadora h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #a5b4fc, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .btn-modern {
+            padding: 12px 30px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-modern:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(129, 140, 248, 0.6);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            display: none; /* Hidden until results exist */
+        }
+        .results-grid.visible {
+            display: grid;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .result-card h4 {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-card p {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+        .result-card.full-width{
+            grid-column: span 2;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,89 +142,130 @@
         </nav>
     </header>
     <main>
-        <form action="" id="form">
-            <label for="ingreso">Ingrese: </label>
-            <input id="ingreso" type="text" placeholder="Ingrese aquí">
-            <br>
-            <button id="btn">Enviar</button>
-        </form>
+        <section class="container-calculadora">
+            <h2>Calculadora de Secuencias</h2>
+            <form action="" id="form">
+                <div class="input-group">
+                    <input id="ingreso" type="number" step="any" placeholder="Ingresa un número para añadir y calcular...">
+                    <button type="submit" id="btn" class="btn-modern">Añadir y Calcular</button>
+                    <button type="button" id="btn-reset" class="btn-modern" style="background: transparent; border: 1px solid var(--accent-primary); box-shadow: none;">Reiniciar</button>
+                </div>
+            </form>
 
-        <p id="cantNum"></p>
-        <p id="sum"></p>
-        <p id="res"></p>
-        <p id="mul"></p>
-        <p id="prom"></p>
-
+            <div class="results-grid" id="results-grid">
+                <div class="result-card full-width">
+                    <h4>Cantidad de Números</h4>
+                    <p id="cantNum">0</p>
+                </div>
+                <div class="result-card">
+                    <h4>Suma</h4>
+                    <p id="sum">0</p>
+                </div>
+                <div class="result-card">
+                    <h4>Resta Acumulada</h4>
+                    <p id="res">0</p>
+                </div>
+                <div class="result-card">
+                    <h4>Multiplicación</h4>
+                    <p id="mul">0</p>
+                </div>
+                <div class="result-card">
+                    <h4>Promedio</h4>
+                    <p id="prom">0</p>
+                </div>
+            </div>
+        </section>
     </main>
     <script>
-
-        const btn = document.getElementById("btn");
-        const ing = document.getElementById("ingreso");
         const form = document.getElementById("form");
+        const ing = document.getElementById("ingreso");
+        const btnReset = document.getElementById("btn-reset");
+        
         const cantNum = document.getElementById("cantNum");
-        const sum = document.getElementById("sum");
-        const res = document.getElementById("res");
-        const mult = document.getElementById("mul");
-        const prom = document.getElementById("prom");
+        const sumEl = document.getElementById("sum");
+        const resEl = document.getElementById("res");
+        const multEl = document.getElementById("mul");
+        const promEl = document.getElementById("prom");
+        const resultsGrid = document.getElementById("results-grid");
 
-        var array1 = [];                                                      // Almacenar los valores ingresados al input
+        // Configuración global tema oscuro para sweetalert
+        const swalDarkConfig = {
+            background: '#1e293b',
+            color: '#f8fafc',
+            confirmButtonColor: '#6366f1'
+        };
+
+        var arrayNumeros = [];
+
+        function updateUI() {
+            if(arrayNumeros.length === 0){
+                resultsGrid.classList.remove('visible');
+                return;
+            }
+
+            resultsGrid.classList.add('visible');
+
+            var suma = 0;
+            // Para la resta acumulada tomaremos el primer numero como base
+            var resta = arrayNumeros[0]; 
+            var multiplicacion = 1;
+
+            for (let i = 0; i < arrayNumeros.length; i++) {
+                suma += arrayNumeros[i];
+                multiplicacion *= arrayNumeros[i];
+                if(i > 0) resta -= arrayNumeros[i];
+            }
+            
+            var promedio = suma / arrayNumeros.length;
+
+            cantNum.textContent = arrayNumeros.length;
+            sumEl.textContent = Number.isInteger(suma) ? suma : suma.toFixed(2);
+            resEl.textContent = Number.isInteger(resta) ? resta : resta.toFixed(2);
+            multEl.textContent = Number.isInteger(multiplicacion) ? multiplicacion : multiplicacion.toFixed(2);
+            promEl.textContent = Number.isInteger(promedio) ? promedio : promedio.toFixed(2);
+        }
 
         form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-            e.preventDefault();                                             // Previene el comportamiento por defecto del Navegador___Recarga la página al undir un btn
-
-            var textOne = ing.value;                                        // Guardamos en una variable el valor del input
-
-            if (textOne == "") {                                            // Evalua si el input esta vacio
-
-                Swal.fire({                                                 // SweetAlert libreria
+            if (ing.value.trim() === "") {
+                Swal.fire({
+                    ...swalDarkConfig,
                     position: "top-end",
                     icon: "error",
-                    title: "No dejes la caja de texto vacia",
+                    title: "Ingresa un número",
+                    text: "La caja de texto no puede estar vacía",
                     showConfirmButton: false,
                     timer: 2000
                 });
-
-                cantNum.innerHTML = "";
-                sum.innerText = "";
-                res.innerText = "";
-                mul.innerText = "";
-                prom.innerHTML = "";
-
             } else {
+                var numeroIngresado = parseFloat(ing.value);
+                arrayNumeros.push(numeroIngresado);
+                
+                updateUI();
 
-                var textTwo = parseInt(ing.value);                         // Se parsea a entero el valor del input
-                array1.push(textTwo);                                      // Añade al arreglo la variable
-
-                var suma1 = 0;
-                var resta = 0;
-                var multiplicacion = 1;
-                var promedio;
-
-                for (let i = 0; i < array1.length; i++) {
-                    suma1 += array1[i];
-                    resta -= array1[i];
-                    multiplicacion *= array1[i];
-                    promedio = suma1 / array1.length;
+                if (arrayNumeros.length === 5) { // Solo notifica al llegar exactamente a 5
+                    Swal.fire({
+                        ...swalDarkConfig,
+                        title: "¡Excelente!",
+                        text: "Has introducido 5 o más números al arreglo.",
+                        icon: "success",
+                        padding: "3em",
+                        timer: 3000
+                    });
                 }
-
-                cantNum.innerHTML = "La cantidad de numeros ingresados es de : " + array1.length;
-                sum.innerText = "La suma de los numeros ingresados es de : " + suma1;
-                res.innerText = "La resta de los numeros ingresados es de : " + resta;
-                mul.innerText = "la multiplicacion de los numeros es de : " + multiplicacion;
-                prom.innerHTML = "el promedio de los numeros es de : " + promedio;
+                
+                ing.value = "";
+                ing.focus();
             }
+        });
 
-            if (array1.length > 5) {
-                Swal.fire({
-                    title: "Felicidades, has llegado a introducir mas de 5 numeros",
-                    width: 600,
-                    padding: "3em",
-                    color: "#716add",
-                    timer: 2000
-                });
-            }
-        })
+        btnReset.addEventListener("click", () => {
+            arrayNumeros = [];
+            updateUI();
+            ing.value = "";
+            ing.focus();
+        });
     </script>
     <script src="../Js/sttilos.js"></script>
     <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>

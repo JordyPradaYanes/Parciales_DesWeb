@@ -1,301 +1,466 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parciales Wilder</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .Puntos:hover,.CSS_input:hover{
-            background-color: #f1ddce;
-            transition: 0.5s;
-        }
-        main{
-            background-color: rgb(220, 220, 220);
-        }
-    </style>
-</head>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="nav">
-            <div class="enlaces-header">
-                <a href="#Inicio"><i class="fa-solid fa-house"></i>
-                    Inicio
-                </a>
-                <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                    HTML5
-                </a>
-                <a href="#CSS3"><i class="fa-brands fa-css3-alt"></i>
-                    CSS3
-                </a>
-                <a href="#Javascript"><i class="fa-solid fa-fire"></i>
-                    Javascript
-                </a>
-                <a href="#parciales"><i class="fa-solid fa-book-open-reader"></i>
-                    Parciales
-                </a>
-                <a href="html/form_User.html"><i class="fa-solid fa-user"></i>
-                    Usuario
-                </a>
-            </div>
-            <div class="hamburguer">
-                <i class="fa-solid fa-bars hamburgueri"></i>
-                <p>Jordy Prada</p>
-            </div>
-        </nav>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="#Inicio"
+            ><i class="fa-solid fa-house"></i>
+            Inicio
+          </a>
+          <a href="#HTML5"
+            ><i class="fa-brands fa-html5"></i>
+            HTML5
+          </a>
+          <a href="#CSS3"
+            ><i class="fa-brands fa-css3-alt"></i>
+            CSS3
+          </a>
+          <a href="#Javascript"
+            ><i class="fa-solid fa-fire"></i>
+            Javascript
+          </a>
+          <a href="#parciales"
+            ><i class="fa-solid fa-book-open-reader"></i>
+            Parciales
+          </a>
+          <a href="html/form_User.html"
+            ><i class="fa-solid fa-user"></i>
+            Usuario
+          </a>
+        </div>
+        <div class="hamburguer">
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
     </header>
     <main>
-        <!-- ****HTML****
+      <section id="HTML5" class="CSS">
+        <h2>Estructuras HTML5</h2>
+        <p>
+          Descubre todas las bases para estructurar la web utilizando etiquetas
+          semánticas, cajas y las últimas características de HTML5.
+        </p>
+        <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank"
+          ><button class="CSS_input">Aprende Más</button></a
+        >
+      </section>
 
+      <!-- ****CSS**** -->
+      <section id="CSS3" class="CSS">
+        <h2>Flexbox y Grid</h2>
+        <p>
+          En esta pagina encontraras todos los conocimientos que debes de tener
+          para Flexbox y css Grid
+        </p>
+        <a href="https://layout.bradwoods.io/"
+          ><button class="CSS_input">Toca aquí</button></a
+        >
+      </section>
 
-        <!-- ****CSS**** -->
-        <section id="CSS3" class="CSS">
-            <h2>Flexbox y Grid</h2>
-            <p>En esta pagina encontraras todos los conocimientos que debes de tener para Flexbox y css Grid</p>
-            <a href="https://layout.bradwoods.io/"><button class="CSS_input">Toca aquí</button></a>
-        </section>
-
-        <section class="flexbox">
-            <div class="justify-content">
-                <h2 class="title-flexbox">justify-content</h2>
-                <div class="contenido-flexbox">
-                    <p>start</p>
-                    <div class="elemento" style="justify-content: start;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
-                <div class="contenido-flexbox">
-                    <p>center</p>
-                    <div class="elemento" style="justify-content: center;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
-                <div class="contenido-flexbox">
-                    <p>end</p>
-                    <div class="elemento" style="justify-content: end;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
-                <div class="contenido-flexbox">
-                    <p>space-between</p>
-                    <div class="elemento" style="justify-content: space-between;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
-                <div class="contenido-flexbox">
-                    <p>space-around</p>
-                    <div class="elemento" style="justify-content: space-around;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
-                <div class="contenido-flexbox">
-                    <p>space-evenly</p>
-                    <div class="elemento" style="justify-content: space-evenly;">
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                        <div><img src="https://images.emojiterra.com/google/android-pie/512px/1f916.png" alt=""></div>
-                    </div>
-                </div>
+      <section class="flexbox">
+        <div class="justify-content">
+          <h2 class="title-flexbox">justify-content</h2>
+          <div class="contenido-flexbox">
+            <p>start</p>
+            <div class="elemento" style="justify-content: start">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="align-items">
-                <h2 class="title-flexbox">align-items <sub style="font-size: 15px;">for column</sub></h2>
-                <div class="contenedor-align-items">
-                    <div class="contenido-flexbox">
-                        <p>center</p>
-                        <div class="elemento-a" style="align-items: center;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>flex-start</p>
-                        <div class="elemento-a" style="align-items: flex-start;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>flex-end</p>
-                        <div class="elemento-a" style="align-items: flex-end;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>stretch</p>
-                        <div class="elemento-a" style="align-items: stretch;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            <div class="align-items">
-                <h2 class="title-flexbox">align-items <sub style="font-size: 15px;">for row</sub></h2>
-                <div class="contenedor-align-items">
-                    <div class="contenido-flexbox">
-                        <p>center</p>
-                        <div class="elemento-b" style="align-items: center;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>flex-start</p>
-                        <div class="elemento-b" style="align-items: flex-start;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>flex-end</p>
-                        <div class="elemento-b" style="align-items: flex-end;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                    <div class="contenido-flexbox">
-                        <p>stretch</p>
-                        <div class="elemento-b" style="align-items: stretch;">
-                            <div class="uno">1</div>
-                            <div class="dos">2</div>
-                            <div class="tres">3</div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-        </section>
-
-        <!-- ****JAVASCRIPT**** -->
-
-
-        <!-- ****Parciales**** -->
-        <div id="parciales" class="container_parciales">
-            <h2 class="title_Parciales">Parciales Desarrollo Web_1</h2>
-        <section class="parciales" id="Usuario">
-            <div class="Puntos">
-                <a href="html/Parcial_1.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 1</p>
-                    <p>-Javascript-</p>
-                </a>
+          </div>
+          <div class="contenido-flexbox">
+            <p>center</p>
+            <div class="elemento" style="justify-content: center">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="Puntos">
-                <a href="html/Parcial_2.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 2</p>
-                    <p>-Javascript-</p>
-                </a>
+          </div>
+          <div class="contenido-flexbox">
+            <p>end</p>
+            <div class="elemento" style="justify-content: end">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="Puntos">
-                <a href="html/Parcial_3.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 3</p>
-                    <p>-HTML5 & CSS3-</p>
-                </a>
+          </div>
+          <div class="contenido-flexbox">
+            <p>space-between</p>
+            <div class="elemento" style="justify-content: space-between">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="Puntos">
-                <a href="html/Parcial_4.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 4</p>
-                    <p>-Javascript-</p>
-                </a>
+          </div>
+          <div class="contenido-flexbox">
+            <p>space-around</p>
+            <div class="elemento" style="justify-content: space-around">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="Puntos">
-                <a href="html/Parcial_5.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 5</p>
-                    <p>-Javascript-</p>
-                </a>
+          </div>
+          <div class="contenido-flexbox">
+            <p>space-evenly</p>
+            <div class="elemento" style="justify-content: space-evenly">
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.emojiterra.com/google/android-pie/512px/1f916.png"
+                  alt=""
+                />
+              </div>
             </div>
-            <div class="Puntos">
-                <a href="html/Parcial_6.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 6</p>
-                    <p>-HTML5 & CSS3-</p>
-                </a>
-            </div>
-            <div class="Puntos">
-                <a href="html/Parcial_7.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 7</p>
-                    <p>-HTML5 & CSS3-</p>
-                </a>
-            </div>
-            <div class="Puntos">
-                <a href="html/Parcial_8.html"><i class="fa-solid fa-folder-open"></i>
-                    <p>Punto 8</p>
-                    <p>-HTML5 & CSS3-</p>
-                </a>
-            </div>
-        </section>
+          </div>
         </div>
+        <div class="align-items">
+          <h2 class="title-flexbox">
+            align-items <sub style="font-size: 15px">for column</sub>
+          </h2>
+          <div class="contenedor-align-items">
+            <div class="contenido-flexbox">
+              <p>center</p>
+              <div class="elemento-a" style="align-items: center">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>flex-start</p>
+              <div class="elemento-a" style="align-items: flex-start">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>flex-end</p>
+              <div class="elemento-a" style="align-items: flex-end">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>stretch</p>
+              <div class="elemento-a" style="align-items: stretch">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="align-items">
+          <h2 class="title-flexbox">
+            align-items <sub style="font-size: 15px">for row</sub>
+          </h2>
+          <div class="contenedor-align-items">
+            <div class="contenido-flexbox">
+              <p>center</p>
+              <div class="elemento-b" style="align-items: center">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>flex-start</p>
+              <div class="elemento-b" style="align-items: flex-start">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>flex-end</p>
+              <div class="elemento-b" style="align-items: flex-end">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+            <div class="contenido-flexbox">
+              <p>stretch</p>
+              <div class="elemento-b" style="align-items: stretch">
+                <div class="uno">1</div>
+                <div class="dos">2</div>
+                <div class="tres">3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ****JAVASCRIPT**** -->
+      <section id="Javascript" class="CSS">
+        <h2>Fundamentos Javascript</h2>
+        <p>
+          Profundiza en la programación del lado del cliente. Aprende a
+          manipular el DOM, manejar eventos y crear lógica interactiva para tus
+          sitios.
+        </p>
+        <a
+          href="https://developer.mozilla.org/es/docs/Web/JavaScript"
+          target="_blank"
+          ><button class="CSS_input">Explorar JS</button></a
+        >
+      </section>
+
+      <!-- ****Parciales**** -->
+      <div id="parciales" class="container_parciales">
+        <h2 class="title_Parciales">Parciales Desarrollo Web_1</h2>
+        <section class="parciales" id="Usuario">
+          <div class="Puntos">
+            <a href="html/Parcial_1.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 1</p>
+              <p>-Javascript-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_2.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 2</p>
+              <p>-Javascript-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_3.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 3</p>
+              <p>-HTML5 & CSS3-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_4.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 4</p>
+              <p>-Javascript-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_5.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 5</p>
+              <p>-Javascript-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_6.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 6</p>
+              <p>-HTML5 & CSS3-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_7.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 7</p>
+              <p>-HTML5 & CSS3-</p>
+            </a>
+          </div>
+          <div class="Puntos">
+            <a href="html/Parcial_8.html"
+              ><i class="fa-solid fa-folder-open"></i>
+              <p>Punto 8</p>
+              <p>-HTML5 & CSS3-</p>
+            </a>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <aside>
-
-    </aside>
+    <aside></aside>
 
     <footer class="footer" id="social_media">
-        <section class="footer_container container">
-            <nav class="nav--footer">
-                <h2 class="footer_title">Jordy Prada</h2>
-                <div>
-                    <ul class="nav_link nav_link--footer">
-                        <!-- (li.nav_items>a.nav_links{Option})*4 -->
-                        <li class="nav_items">
-                            <a href="https://openwebinars.net/blog/que-es-html5/"><i class="fa-brands fa-html5"
-                                    style="color: #f85d20;"></i></a>
-                            <a href="https://openwebinars.net/blog/que-es-html5/" class="nav_links">HTML5</a>
-                        </li>
-                        <li class="nav_items">
-                            <a href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/What_is_CSS"><i
-                                    class="fa-brands fa-css3" style="color: #3d84ff;"></i></a>
-                            <a href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/What_is_CSS"
-                                class="nav_links">CSS3</a>
-                        </li>
-                        <li class="nav_items">
-                            <a href="https://www.java.com/es/download/help/whatis_java.html"><i
-                                    class="fa-brands fa-java" style="color: #c70000;"></i></a>
-                            <a href="https://www.java.com/es/download/help/whatis_java.html" class="nav_links">JAVA</a>
-                        </li>
-                        <li class="nav_items">
-                            <a
-                                href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"><i
-                                    class="fa-brands fa-js" style="color: #f4ee3e; padding-left: 20px;"></i></a>
-                            <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"
-                                class="nav_links">JAVASCRIPT</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </section>
-        <section class="footer_copy container" id="redesSociales">
-            <div class="footer_social">
-                <a href="https://github.com/JordyPradaYanes" class="footer_icon"><img src="Icons/git-hub.svg"
-                        alt="Icon git-hub" class="footer_img"></a>
-                <a href="https://instagram.com/jdpr.ada?igshid=OGQ5ZDc2ODk2ZA==" class="footer_icon"><img
-                        src="Icons/instagram.svg" alt="Icon Instagram" class="footer_img"></a>
-                <a href="https://www.linkedin.com/in/jordy-daniel-prada-yanes-b8a3a3272" class="footer_icon"><img
-                        src="Icons/linkedink.svg" alt="Icon linkedink" class="footer_img"></a>
-            </div>
-            <h3 class="footer_copyright">Derechos reservados &copy; Jordy-Prada</h3>
-        </section>
+      <section class="footer_container container">
+        <nav class="nav--footer">
+          <h2 class="footer_title">Jordy Prada</h2>
+          <div>
+            <ul class="nav_link nav_link--footer">
+              <!-- (li.nav_items>a.nav_links{Option})*4 -->
+              <li class="nav_items">
+                <a href="https://openwebinars.net/blog/que-es-html5/"
+                  ><i class="fa-brands fa-html5" style="color: #f85d20"></i
+                ></a>
+                <a
+                  href="https://openwebinars.net/blog/que-es-html5/"
+                  class="nav_links"
+                  >HTML5</a
+                >
+              </li>
+              <li class="nav_items">
+                <a
+                  href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/What_is_CSS"
+                  ><i class="fa-brands fa-css3" style="color: #3d84ff"></i
+                ></a>
+                <a
+                  href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/What_is_CSS"
+                  class="nav_links"
+                  >CSS3</a
+                >
+              </li>
+              <li class="nav_items">
+                <a href="https://www.java.com/es/download/help/whatis_java.html"
+                  ><i class="fa-brands fa-java" style="color: #c70000"></i
+                ></a>
+                <a
+                  href="https://www.java.com/es/download/help/whatis_java.html"
+                  class="nav_links"
+                  >JAVA</a
+                >
+              </li>
+              <li class="nav_items">
+                <a
+                  href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"
+                  ><i
+                    class="fa-brands fa-js"
+                    style="color: #f4ee3e; padding-left: 20px"
+                  ></i
+                ></a>
+                <a
+                  href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript"
+                  class="nav_links"
+                  >JAVASCRIPT</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </section>
+      <section class="footer_copy container" id="redesSociales">
+        <div class="footer_social">
+          <a href="https://github.com/JordyPradaYanes" class="footer_icon"
+            ><img src="Icons/git-hub.svg" alt="Icon git-hub" class="footer_img"
+          /></a>
+          <a
+            href="https://instagram.com/jdpr.ada?igshid=OGQ5ZDc2ODk2ZA=="
+            class="footer_icon"
+            ><img
+              src="Icons/instagram.svg"
+              alt="Icon Instagram"
+              class="footer_img"
+          /></a>
+          <a
+            href="https://www.linkedin.com/in/jordy-daniel-prada-yanes-b8a3a3272"
+            class="footer_icon"
+            ><img
+              src="Icons/linkedink.svg"
+              alt="Icon linkedink"
+              class="footer_img"
+          /></a>
+        </div>
+        <h3 class="footer_copyright">Derechos reservados &copy; Jordy-Prada</h3>
+      </section>
     </footer>
     <script src="Js/index.js"></script>
-    <script src="https://kit.fontawesome.com/459ee9189d.js" crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

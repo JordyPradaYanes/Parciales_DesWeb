@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheatsheet - Referencia Rápida</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 20px 60px;
+      }
+      .page-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+      }
+      .page-subtitle {
+        text-align: center;
+        color: var(--text-secondary);
+        margin-bottom: 50px;
+      }
+      .section-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        padding: 10px 25px;
+        border: 1px solid var(--glass-border);
+        background: var(--card-bg);
+        color: var(--text-secondary);
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .tab-btn.active,
+      .tab-btn:hover {
+        background: var(--accent-primary);
+        color: white;
+        border-color: var(--accent-primary);
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .cheat-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+      }
+      .cheat-card:hover {
+        transform: translateY(-5px);
+      }
+      .cheat-card h3 {
+        font-family: "Outfit", sans-serif;
+        font-size: 1rem;
+        color: var(--accent-hover);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cheat-card .desc {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+      .code-snippet {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        padding: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: #c084fc;
+        overflow-x: auto;
+        border-left: 3px solid var(--accent-primary);
+      }
+      .code-snippet .tag {
+        color: #f97316;
+      }
+      .code-snippet .attr {
+        color: #a5b4fc;
+      }
+      .code-snippet .val {
+        color: #10b981;
+      }
+      .code-snippet .prop {
+        color: #60a5fa;
+      }
+      .code-snippet .method {
+        color: #fbbf24;
+      }
+      .code-snippet .comment {
+        color: #64748b;
+      }
+      .tag-badge {
+        display: inline-block;
+        background: rgba(99, 102, 241, 0.2);
+        color: var(--accent-hover);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        margin-right: 4px;
+        margin-bottom: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="page-title">📋 Referencia Rápida</h1>
+      <p class="page-subtitle">
+        Consulta las etiquetas, propiedades y métodos más usados en el
+        desarrollo web
+      </p>
+
+      <div class="section-tabs">
+        <button class="tab-btn active" onclick="showTab('html')">
+          <i class="fa-brands fa-html5"></i> HTML5
+        </button>
+        <button class="tab-btn" onclick="showTab('css')">
+          <i class="fa-brands fa-css3-alt"></i> CSS3
+        </button>
+        <button class="tab-btn" onclick="showTab('js')">
+          <i class="fa-brands fa-js"></i> JavaScript
+        </button>
+      </div>
+
+      <!-- HTML TAB -->
+      <div class="tab-content active" id="tab-html">
+        <div class="cards-grid">
+          <div class="cheat-card">
+            <h3>🏗️ Estructura Base</h3>
+            <p class="desc">
+              Plantilla básica que debe tener cualquier documento HTML5.
+            </p>
+            <div class="code-snippet">
+              &lt;<span class="tag">!DOCTYPE html</span>&gt;<br />
+              &lt;<span class="tag">html</span>
+              <span class="attr">lang</span>=<span class="val">"es"</span
+              >&gt;<br />
+              &nbsp;&lt;<span class="tag">head</span>&gt;<br />
+              &nbsp;&nbsp;&lt;<span class="tag">meta</span>
+              <span class="attr">charset</span>=<span class="val">"UTF-8"</span
+              >&gt;<br />
+              &nbsp;&nbsp;&lt;<span class="tag">title</span>&gt;Título&lt;/<span
+                class="tag"
+                >title</span
+              >&gt;<br />
+              &nbsp;&lt;/<span class="tag">head</span>&gt;<br />
+              &nbsp;&lt;<span class="tag">body</span>&gt;...&lt;/<span
+                class="tag"
+                >body</span
+              >&gt;<br />
+              &lt;/<span class="tag">html</span>&gt;
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🏷️ Etiquetas Semánticas</h3>
+            <p class="desc">
+              Etiquetas que le dan significado al contenido para navegadores y
+              motores de búsqueda.
+            </p>
+            <div>
+              <span class="tag-badge">&lt;header&gt;</span>
+              <span class="tag-badge">&lt;nav&gt;</span>
+              <span class="tag-badge">&lt;main&gt;</span>
+              <span class="tag-badge">&lt;section&gt;</span>
+              <span class="tag-badge">&lt;article&gt;</span>
+              <span class="tag-badge">&lt;aside&gt;</span>
+              <span class="tag-badge">&lt;footer&gt;</span>
+              <span class="tag-badge">&lt;figure&gt;</span>
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🔗 Enlace e Imagen</h3>
+            <p class="desc">
+              Etiquetas para vincular páginas y mostrar imágenes.
+            </p>
+            <div class="code-snippet">
+              <span class="comment">&lt;!-- Enlace --&gt;</span><br />
+              &lt;<span class="tag">a</span>
+              <span class="attr">href</span>=<span class="val">"url"</span>
+              <span class="attr">target</span>=<span class="val">"_blank"</span
+              >&gt;Texto&lt;/<span class="tag">a</span>&gt;<br /><br />
+              <span class="comment">&lt;!-- Imagen --&gt;</span><br />
+              &lt;<span class="tag">img</span>
+              <span class="attr">src</span>=<span class="val">"img.png"</span>
+              <span class="attr">alt</span>=<span class="val"
+                >"descripción"</span
+              >&gt;
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>📝 Formularios</h3>
+            <p class="desc">
+              Elementos básicos para capturar datos del usuario.
+            </p>
+            <div class="code-snippet">
+              &lt;<span class="tag">form</span>
+              <span class="attr">action</span>=<span class="val">""</span
+              >&gt;<br />
+              &nbsp;&lt;<span class="tag">input</span>
+              <span class="attr">type</span>=<span class="val">"text"</span>
+              <span class="attr">placeholder</span>=<span class="val"
+                >"Nombre"</span
+              >&gt;<br />
+              &nbsp;&lt;<span class="tag">input</span>
+              <span class="attr">type</span>=<span class="val">"email"</span
+              >&gt;<br />
+              &nbsp;&lt;<span class="tag">select</span>&gt;&lt;<span class="tag"
+                >option</span
+              >&gt;Opción&lt;/<span class="tag">option</span>&gt;&lt;/<span
+                class="tag"
+                >select</span
+              >&gt;<br />
+              &nbsp;&lt;<span class="tag">button</span>
+              <span class="attr">type</span>=<span class="val">"submit"</span
+              >&gt;Enviar&lt;/<span class="tag">button</span>&gt;<br />
+              &lt;/<span class="tag">form</span>&gt;
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>📋 Listas</h3>
+            <p class="desc">Ordenadas y no ordenadas.</p>
+            <div class="code-snippet">
+              <span class="comment">&lt;!-- Lista con viñetas --&gt;</span
+              ><br />
+              &lt;<span class="tag">ul</span>&gt;<br />
+              &nbsp;&lt;<span class="tag">li</span>&gt;Elemento&lt;/<span
+                class="tag"
+                >li</span
+              >&gt;<br />
+              &lt;/<span class="tag">ul</span>&gt;<br /><br />
+              <span class="comment">&lt;!-- Lista numerada --&gt;</span><br />
+              &lt;<span class="tag">ol</span>&gt;<br />
+              &nbsp;&lt;<span class="tag">li</span>&gt;Primero&lt;/<span
+                class="tag"
+                >li</span
+              >&gt;<br />
+              &lt;/<span class="tag">ol</span>&gt;
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>📊 Tabla</h3>
+            <p class="desc">
+              Estructura básica para presentar datos en filas y columnas.
+            </p>
+            <div class="code-snippet">
+              &lt;<span class="tag">table</span>&gt;<br />
+              &nbsp;&lt;<span class="tag">thead</span>&gt;<br />
+              &nbsp;&nbsp;&lt;<span class="tag">tr</span>&gt;&lt;<span
+                class="tag"
+                >th</span
+              >&gt;Col 1&lt;/<span class="tag">th</span>&gt;&lt;/<span
+                class="tag"
+                >tr</span
+              >&gt;<br />
+              &nbsp;&lt;/<span class="tag">thead</span>&gt;<br />
+              &nbsp;&lt;<span class="tag">tbody</span>&gt;<br />
+              &nbsp;&nbsp;&lt;<span class="tag">tr</span>&gt;&lt;<span
+                class="tag"
+                >td</span
+              >&gt;Dato&lt;/<span class="tag">td</span>&gt;&lt;/<span
+                class="tag"
+                >tr</span
+              >&gt;<br />
+              &nbsp;&lt;/<span class="tag">tbody</span>&gt;<br />
+              &lt;/<span class="tag">table</span>&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CSS TAB -->
+      <div class="tab-content" id="tab-css">
+        <div class="cards-grid">
+          <div class="cheat-card">
+            <h3>🎨 Selectores</h3>
+            <p class="desc">
+              Las formas de seleccionar elementos del DOM para aplicar estilos.
+            </p>
+            <div class="code-snippet">
+              <span class="comment">/* Por etiqueta */</span><br />
+              <span class="prop">p</span> { <span class="attr">color</span>:
+              red; }<br /><br />
+              <span class="comment">/* Por clase (.) */</span><br />
+              <span class="prop">.mi-clase</span> {
+              <span class="attr">font-size</span>: 16px; }<br /><br />
+              <span class="comment">/* Por ID (#) */</span><br />
+              <span class="prop">#mi-id</span> {
+              <span class="attr">display</span>: flex; }<br /><br />
+              <span class="comment">/* Descendiente */</span><br />
+              <span class="prop">nav a</span> {
+              <span class="attr">text-decoration</span>: none; }
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>📦 Box Model</h3>
+            <p class="desc">
+              Cada elemento es una caja con las siguientes capas.
+            </p>
+            <div class="code-snippet">
+              .caja {<br />
+              &nbsp;<span class="prop">width</span>: 200px;<br />
+              &nbsp;<span class="prop">padding</span>: 20px;
+              <span class="comment">/* interior */</span><br />
+              &nbsp;<span class="prop">border</span>: 1px solid #ccc;<br />
+              &nbsp;<span class="prop">margin</span>: 10px;
+              <span class="comment">/* exterior */</span><br />
+              &nbsp;<span class="prop">box-sizing</span>: border-box;<br />
+              }
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>↔️ Flexbox</h3>
+            <p class="desc">
+              Sistema de diseño unidimensional para alinear elementos en una
+              fila o columna.
+            </p>
+            <div class="code-snippet">
+              .container {<br />
+              &nbsp;<span class="prop">display</span>: flex;<br />
+              &nbsp;<span class="prop">justify-content</span>: center;
+              <span class="comment">/* eje X */</span><br />
+              &nbsp;<span class="prop">align-items</span>: center;
+              <span class="comment">/* eje Y */</span><br />
+              &nbsp;<span class="prop">gap</span>: 20px;<br />
+              &nbsp;<span class="prop">flex-wrap</span>: wrap;<br />
+              }
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>⊞ CSS Grid</h3>
+            <p class="desc">
+              Sistema de diseño bidimensional para crear cuadrículas complejas.
+            </p>
+            <div class="code-snippet">
+              .grid {<br />
+              &nbsp;<span class="prop">display</span>: grid;<br />
+              &nbsp;<span class="prop">grid-template-columns</span>: 1fr 1fr
+              1fr;<br />
+              &nbsp;<span class="comment">/* o con auto-fit: */</span><br />
+              &nbsp;<span class="prop">grid-template-columns</span>:<br />
+              &nbsp;&nbsp;repeat(auto-fit, minmax(200px, 1fr));<br />
+              &nbsp;<span class="prop">gap</span>: 20px;<br />
+              }
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>✨ Transiciones</h3>
+            <p class="desc">Animaciones suaves entre estados CSS.</p>
+            <div class="code-snippet">
+              .btn {<br />
+              &nbsp;<span class="prop">transition</span>: all 0.3s ease;<br />
+              }<br />
+              .btn:hover {<br />
+              &nbsp;<span class="prop">transform</span>: translateY(-5px);<br />
+              &nbsp;<span class="prop">box-shadow</span>: 0 10px 20px
+              rgba(0,0,0,.2);<br />
+              }
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🖥️ Media Queries</h3>
+            <p class="desc">
+              Estilos condicionales según el tamaño de pantalla (Responsive
+              Design).
+            </p>
+            <div class="code-snippet">
+              <span class="comment">/* Tablet y menores */</span><br />
+              @media (max-width: 768px) {<br />
+              &nbsp;<span class="prop">.sidebar</span> {<br />
+              &nbsp;&nbsp;<span class="attr">display</span>: none;<br />
+              &nbsp;}<br />
+              }<br />
+              <span class="comment">/* Móvil */</span><br />
+              @media (max-width: 480px) {<br />
+              &nbsp;<span class="prop">h1</span> {
+              <span class="attr">font-size</span>: 1.5rem; }<br />
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JS TAB -->
+      <div class="tab-content" id="tab-js">
+        <div class="cards-grid">
+          <div class="cheat-card">
+            <h3>🔍 Seleccionar del DOM</h3>
+            <p class="desc">Cómo acceder a elementos HTML desde JavaScript.</p>
+            <div class="code-snippet">
+              <span class="comment">// Un elemento por ID</span><br />
+              const el = document.<span class="method">getElementById</span
+              >(<span class="val">'mi-id'</span>);<br /><br />
+              <span class="comment">// Primero que coincida</span><br />
+              const el = document.<span class="method">querySelector</span
+              >(<span class="val">'.clase'</span>);<br /><br />
+              <span class="comment">// Todos los que coincidan</span><br />
+              const items = document.<span class="method">querySelectorAll</span
+              >(<span class="val">'li'</span>);
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🖱️ Eventos</h3>
+            <p class="desc">
+              Cómo escuchar acciones del usuario sobre los elementos.
+            </p>
+            <div class="code-snippet">
+              const btn = document.<span class="method">querySelector</span
+              >(<span class="val">'#btn'</span>);<br /><br />
+              btn.<span class="method">addEventListener</span>(<span class="val"
+                >'click'</span
+              >, (e) => {<br />
+              &nbsp;console.<span class="method">log</span>(<span class="val"
+                >'¡Clic!'</span
+              >);<br />
+              &nbsp;e.<span class="method">preventDefault</span>();
+              <span class="comment">// evita recarga</span><br />
+              });
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🔁 Array.map()</h3>
+            <p class="desc">Crea un nuevo array transformando cada elemento.</p>
+            <div class="code-snippet">
+              const nums = [1, 2, 3, 4];<br /><br />
+              const dobles = nums.<span class="method">map</span>(n => n *
+              2);<br />
+              <span class="comment">// → [2, 4, 6, 8]</span>
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>🔍 Array.filter()</h3>
+            <p class="desc">Filtra elementos que cumplen una condición.</p>
+            <div class="code-snippet">
+              const nums = [1, 2, 3, 4, 5, 6];<br /><br />
+              const pares = nums.<span class="method">filter</span>(n => n % 2
+              === 0);<br />
+              <span class="comment">// → [2, 4, 6]</span>
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>📡 Fetch API</h3>
+            <p class="desc">
+              Realiza peticiones HTTP para consumir APIs externas.
+            </p>
+            <div class="code-snippet">
+              <span class="method">fetch</span>(<span class="val"
+                >'https://api.ejemplo.com/datos'</span
+              >)<br />
+              &nbsp;.<span class="method">then</span>(res => res.<span
+                class="method"
+                >json</span
+              >())<br />
+              &nbsp;.<span class="method">then</span>(data => {<br />
+              &nbsp;&nbsp;console.<span class="method">log</span>(data);<br />
+              &nbsp;})<br />
+              &nbsp;.<span class="method">catch</span>(err => console.<span
+                class="method"
+                >error</span
+              >(err));
+            </div>
+          </div>
+          <div class="cheat-card">
+            <h3>💾 localStorage</h3>
+            <p class="desc">
+              Guarda datos en el navegador que persisten al recargar.
+            </p>
+            <div class="code-snippet">
+              <span class="comment">// Guardar</span><br />
+              localStorage.<span class="method">setItem</span>(<span class="val"
+                >'clave'</span
+              >, <span class="val">'valor'</span>);<br /><br />
+              <span class="comment">// Recuperar</span><br />
+              const val = localStorage.<span class="method">getItem</span>(<span
+                class="val"
+                >'clave'</span
+              >);<br /><br />
+              <span class="comment">// Eliminar</span><br />
+              localStorage.<span class="method">removeItem</span>(<span
+                class="val"
+                >'clave'</span
+              >);
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function showTab(name) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("tab-" + name).classList.add("active");
+        event.currentTarget.classList.add("active");
+      }
+    </script>
+  </body>
+</html>

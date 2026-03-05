@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retos de Programación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 100px 20px 60px;
+      }
+      .page-title {
+        text-align: center;
+        font-family: "Outfit", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+      }
+      .page-sub {
+        text-align: center;
+        color: var(--text-secondary);
+        margin-bottom: 45px;
+      }
+      .level-group {
+        margin-bottom: 40px;
+      }
+      .level-label {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .badge-easy {
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        padding: 3px 12px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+      }
+      .badge-med {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+        padding: 3px 12px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+      }
+      .badge-hard {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        padding: 3px 12px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+      }
+      .challenge {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 22px 25px;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s;
+      }
+      .challenge:hover {
+        transform: translateY(-3px);
+      }
+      .ch-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      .ch-title {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .ch-desc {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .ch-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .tag {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+        border-radius: 50px;
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--accent-hover);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+      }
+      .hint-btn {
+        padding: 8px 18px;
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--text-secondary);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        transition: all 0.3s;
+        font-family: "Outfit", sans-serif;
+      }
+      .hint-btn:hover {
+        border-color: var(--accent-primary);
+        color: var(--text-primary);
+      }
+      .hint-box {
+        display: none;
+        margin-top: 15px;
+        padding: 14px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        border-left: 3px solid var(--accent-primary);
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-family: "JetBrains Mono", monospace;
+        line-height: 1.6;
+      }
+      .hint-box.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .progress-bar-wrap {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50px;
+        height: 8px;
+        margin-bottom: 30px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        border-radius: 50px;
+        transition: width 0.5s ease;
+      }
+      .progress-text {
+        text-align: right;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 5px;
+      }
+      .solved-btn {
+        padding: 8px 14px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #10b981;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.3s;
+      }
+      .solved-btn.done {
+        background: rgba(16, 185, 129, 0.3);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1 class="page-title">🏆 Retos de Programación</h1>
+      <p class="page-sub">
+        Pon a prueba tus conocimientos con estos retos progresivos. Intenta
+        resolverlos antes de ver la pista.
+      </p>
+
+      <div class="progress-text">
+        Completados: <span id="count">0</span> / 6
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="pbar" style="width: 0%"></div>
+      </div>
+
+      <!-- EASY -->
+      <div class="level-group">
+        <div class="level-label">🟢 <span class="badge-easy">Fácil</span></div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">1. Centra un div con Flexbox</div>
+              <div class="ch-desc">
+                Crea un contenedor que ocupe toda la pantalla y centre un
+                cuadrado de 100x100px tanto horizontal como verticalmente usando
+                solo <strong>Flexbox</strong>.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">CSS</span><span class="tag">Flexbox</span
+                ><span class="tag">display: flex</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h1')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb1" onclick="markSolved('sb1')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h1">
+            /* Aplica esto al contenedor padre */<br />display: flex;<br />justify-content:
+            center; /* eje horizontal */<br />align-items: center; /* eje
+            vertical */<br />height: 100vh; /* ocupa toda la pantalla */
+          </div>
+        </div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">2. Alerta al hacer clic en un botón</div>
+              <div class="ch-desc">
+                Crea un botón en HTML que, al hacerle clic, muestre un
+                <code>alert()</code> con el texto "¡Hola, mundo!" usando
+                JavaScript.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">HTML</span><span class="tag">JavaScript</span
+                ><span class="tag">addEventListener</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h2')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb2" onclick="markSolved('sb2')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h2">
+            const btn = document.querySelector('#miBoton');<br />btn.addEventListener('click',
+            () => {<br />&nbsp;&nbsp;alert('¡Hola, mundo!');<br />});
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDIUM -->
+      <div class="level-group">
+        <div class="level-label">🟡 <span class="badge-med">Medio</span></div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">3. Contador con +/- botones</div>
+              <div class="ch-desc">
+                Crea una página con un número en pantalla y dos botones: uno que
+                lo incremente (+1) y otro que lo decremente (-1). El número no
+                debe bajar de 0.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">JavaScript</span><span class="tag">DOM</span
+                ><span class="tag">Condicionales</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h3')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb3" onclick="markSolved('sb3')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h3">
+            let count = 0;<br />const display =
+            document.getElementById('num');<br />function increment() { count++;
+            display.textContent = count; }<br />function decrement() { if(count
+            > 0) { count--; display.textContent = count; } }
+          </div>
+        </div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">4. Lista de tareas dinámica</div>
+              <div class="ch-desc">
+                Crea un input de texto y un botón "Agregar". Al presionarlo,
+                debe añadir el texto como un nuevo <code>&lt;li&gt;</code> en
+                una lista. Al hacer clic en el ítem, debe eliminarse.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">JavaScript</span><span class="tag">DOM</span
+                ><span class="tag">createElement</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h4')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb4" onclick="markSolved('sb4')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h4">
+            const li = document.createElement('li');<br />li.textContent =
+            input.value;<br />li.addEventListener('click', () =>
+            li.remove());<br />lista.appendChild(li);
+          </div>
+        </div>
+      </div>
+
+      <!-- HARD -->
+      <div class="level-group">
+        <div class="level-label">
+          🔴 <span class="badge-hard">Difícil</span>
+        </div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">
+                5. Barra de búsqueda con filtro en tiempo real
+              </div>
+              <div class="ch-desc">
+                Con una lista de 8 países en un array, muéstralos como tarjetas.
+                Agrega un input que filtre las tarjetas visibles al escribir,
+                sin recargar la página. Usa el evento <code>input</code>.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">JavaScript</span
+                ><span class="tag">Array.filter</span
+                ><span class="tag">DOM</span><span class="tag">eventos</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h5')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb5" onclick="markSolved('sb5')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h5">
+            input.addEventListener('input', () => {<br />&nbsp;&nbsp;const q =
+            input.value.toLowerCase();<br />&nbsp;&nbsp;const filtered =
+            paises.filter(p => p.toLowerCase().includes(q));<br />&nbsp;&nbsp;renderCards(filtered);
+            // función que dibuja las tarjetas<br />});
+          </div>
+        </div>
+
+        <div class="challenge">
+          <div class="ch-header">
+            <div>
+              <div class="ch-title">
+                6. Modo Oscuro / Claro con localStorage
+              </div>
+              <div class="ch-desc">
+                Agrega un botón toggle 🌙/☀️ que cambie el tema de la página
+                (oscuro/claro). El tema elegido debe guardarse en
+                <code>localStorage</code> y aplicarse automáticamente al
+                recargar la página.
+              </div>
+              <div class="ch-tags">
+                <span class="tag">JavaScript</span
+                ><span class="tag">localStorage</span
+                ><span class="tag">CSS Variables</span
+                ><span class="tag">classList</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button class="hint-btn" onclick="toggleHint('h6')">
+                💡 Pista
+              </button>
+              <button class="solved-btn" id="sb6" onclick="markSolved('sb6')">
+                ✓ Resuelto
+              </button>
+            </div>
+          </div>
+          <div class="hint-box" id="h6">
+            // Al cargar la página:<br />const tema =
+            localStorage.getItem('tema') || 'dark';<br />document.body.classList.add(tema);<br /><br />//
+            Al presionar el botón:<br />document.body.classList.toggle('light');<br />localStorage.setItem('tema',
+            document.body.classList.contains('light') ? 'light' : 'dark');
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let solved = JSON.parse(localStorage.getItem("retos-solved") || "[]");
+
+      function init() {
+        solved.forEach((id) => {
+          const btn = document.getElementById(id);
+          if (btn)
+            (btn.classList.add("done"), (btn.textContent = "✅ Resuelto"));
+        });
+        updateProgress();
+      }
+
+      function toggleHint(id) {
+        const box = document.getElementById(id);
+        box.classList.toggle("show");
+      }
+
+      function markSolved(id) {
+        const btn = document.getElementById(id);
+        if (btn.classList.contains("done")) {
+          btn.classList.remove("done");
+          btn.textContent = "✓ Resuelto";
+          solved = solved.filter((s) => s !== id);
+        } else {
+          btn.classList.add("done");
+          btn.textContent = "✅ Resuelto";
+          if (!solved.includes(id)) solved.push(id);
+        }
+        localStorage.setItem("retos-solved", JSON.stringify(solved));
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const c = solved.length;
+        document.getElementById("count").textContent = c;
+        document.getElementById("pbar").style.width = (c / 6) * 100 + "%";
+      }
+
+      init();
+    </script>
+  </body>
+</html>

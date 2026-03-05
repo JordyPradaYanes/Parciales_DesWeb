@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz - Pon a Prueba tu Conocimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 100px 20px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+      }
+      .page-title {
+        font-family: "Outfit", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+      .page-sub {
+        color: var(--text-secondary);
+        text-align: center;
+      }
+      .quiz-progress {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50px;
+        height: 6px;
+        overflow: hidden;
+      }
+      .quiz-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #6366f1, #c084fc);
+        border-radius: 50px;
+        transition: width 0.4s ease;
+      }
+      .q-counter {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+      .question-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 30px;
+        width: 100%;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+      .question-text {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      .question-text code {
+        font-size: 1rem;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 8px;
+        border-radius: 6px;
+        color: #c084fc;
+      }
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .option-btn {
+        text-align: left;
+        padding: 13px 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--glass-border);
+        border-radius: 10px;
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.25s;
+        font-family: "Inter", sans-serif;
+      }
+      .option-btn:hover:not(:disabled) {
+        background: rgba(99, 102, 241, 0.15);
+        border-color: var(--accent-primary);
+      }
+      .option-btn.correct {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: #10b981;
+        color: #10b981;
+      }
+      .option-btn.wrong {
+        background: rgba(239, 68, 68, 0.15);
+        border-color: #ef4444;
+        color: #ef4444;
+      }
+      .option-btn:disabled {
+        cursor: default;
+      }
+      .explanation {
+        margin-top: 15px;
+        padding: 12px 16px;
+        background: rgba(99, 102, 241, 0.08);
+        border-radius: 8px;
+        border-left: 3px solid var(--accent-primary);
+        font-size: 0.88rem;
+        color: var(--text-secondary);
+        display: none;
+      }
+      .explanation.show {
+        display: block;
+      }
+      .nav-btns {
+        display: flex;
+        gap: 15px;
+      }
+      .btn-next {
+        padding: 12px 30px;
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-family: "Outfit", sans-serif;
+        display: none;
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+      .btn-next:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+      /* Results Screen */
+      .results {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        text-align: center;
+      }
+      .score-ring {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid var(--accent-primary);
+        box-shadow: 0 0 30px var(--accent-glow);
+        background: var(--card-bg);
+      }
+      .score-num {
+        font-size: 2.8rem;
+        font-weight: 700;
+        font-family: "Outfit", sans-serif;
+        color: var(--accent-hover);
+      }
+      .score-den {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      .score-msg {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+      .score-sub {
+        color: var(--text-secondary);
+      }
+      .btn-retry {
+        padding: 12px 30px;
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        box-shadow: 0 4px 15px var(--accent-glow);
+        transition: all 0.3s;
+      }
+      .btn-retry:hover {
+        transform: translateY(-2px);
+      }
+      .topic-badge {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+        border-radius: 50px;
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--accent-hover);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div
+        id="quiz-area"
+        style="
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        "
+      >
+        <h1 class="page-title">🧠 Quiz de Desarrollo Web</h1>
+        <p class="page-sub">
+          10 preguntas sobre HTML, CSS y JavaScript. ¡Sin miedo!
+        </p>
+        <p class="q-counter">Pregunta <span id="q-num">1</span> de 10</p>
+        <div class="quiz-progress" style="width: 100%">
+          <div
+            class="quiz-progress-fill"
+            id="q-progress"
+            style="width: 10%"
+          ></div>
+        </div>
+        <div class="question-card" id="q-card">
+          <div class="topic-badge" id="q-topic">HTML</div>
+          <div class="question-text" id="q-text"></div>
+          <div class="options" id="q-options"></div>
+          <div class="explanation" id="q-explanation"></div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn-next" id="btn-next" onclick="nextQuestion()">
+            Siguiente →
+          </button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="results" id="results">
+        <h2 class="page-title">¡Completado!</h2>
+        <div class="score-ring">
+          <div class="score-num" id="res-score">0</div>
+          <div class="score-den">de 10</div>
+        </div>
+        <div class="score-msg" id="res-msg"></div>
+        <p class="score-sub" id="res-sub"></p>
+        <button class="btn-retry" onclick="restartQuiz()">
+          🔄 Intentar de Nuevo
+        </button>
+      </div>
+    </main>
+
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const questions = [
+        {
+          topic: "HTML",
+          text: "¿Cuál de estas es una etiqueta semántica de HTML5?",
+          options: [
+            "&lt;div&gt;",
+            "&lt;section&gt;",
+            "&lt;span&gt;",
+            "&lt;b&gt;",
+          ],
+          correct: 1,
+          explanation:
+            "<strong>&lt;section&gt;</strong> es una etiqueta semántica. Le dice al navegador y a los motores de búsqueda que ese bloque representa una sección temática del contenido.",
+        },
+        {
+          topic: "HTML",
+          text: "¿Qué atributo se usa para hacer un enlace que abra en una nueva pestaña?",
+          options: [
+            'rel="noopener"',
+            'href="new"',
+            'target="_blank"',
+            'open="true"',
+          ],
+          correct: 2,
+          explanation:
+            '<strong>target="_blank"</strong> le indica al navegador que abra el enlace en una nueva pestaña o ventana.',
+        },
+        {
+          topic: "CSS",
+          text: "¿Qué propiedad CSS se usa para centrar elementos en el eje horizontal con Flexbox?",
+          options: [
+            "align-items",
+            "justify-content",
+            "flex-direction",
+            "align-content",
+          ],
+          correct: 1,
+          explanation:
+            "<strong>justify-content</strong> controla la alineación en el eje principal (horizontal por defecto). Usa <code>justify-content: center</code> para centrar horizontalmente.",
+        },
+        {
+          topic: "CSS",
+          text: "¿Qué valor crea columnas que se adaptan automáticamente al espacio disponible en CSS Grid?",
+          options: ["auto-fill", "auto-fit", "repeat(auto)", "auto-columns"],
+          correct: 1,
+          explanation:
+            "<code>repeat(auto-fit, minmax(200px, 1fr))</code> crea columnas que se expanden para llenar el espacio disponible cuando hay pocos elementos.",
+        },
+        {
+          topic: "CSS",
+          text: "¿Cuál es la especificidad más alta en la cascada CSS?",
+          options: [
+            "Clase (.clase)",
+            "Etiqueta (p)",
+            "ID (#id)",
+            'Estilos en línea (style="")',
+          ],
+          correct: 3,
+          explanation:
+            "Los <strong>estilos en línea</strong> tienen la mayor especificidad, seguidos por ID, clase y finalmente etiqueta. Solo !important supera a los estilos en línea.",
+        },
+        {
+          topic: "JavaScript",
+          text: "¿Cuál de estas formas de declarar una variable permite reasignar su valor?",
+          options: ["const", "let", "final", "var (solo en funciones)"],
+          correct: 1,
+          explanation:
+            "<strong>let</strong> permite reasignar el valor. <code>const</code> no puede reasignarse. <code>var</code> también permite reasignación pero tiene problemas de scope.",
+        },
+        {
+          topic: "JavaScript",
+          text: "¿Qué método de Array crea un NUEVO array transformando cada elemento?",
+          options: ["filter()", "forEach()", "map()", "find()"],
+          correct: 2,
+          explanation:
+            "<strong>map()</strong> crea y retorna un nuevo array. <code>forEach()</code> solo itera sin retornar nada. <code>filter()</code> filtra según una condición.",
+        },
+        {
+          topic: "JavaScript",
+          text: "¿Qué hace <code>e.preventDefault()</code> dentro de un manejador de evento?",
+          options: [
+            "Detiene la propagación del evento al padre",
+            "Cancela el comportamiento por defecto del navegador",
+            "Elimina el event listener",
+            "Pausa la ejecución del script",
+          ],
+          correct: 1,
+          explanation:
+            "<strong>preventDefault()</strong> cancela la acción predeterminada, por ejemplo evita que un formulario se envíe y recargue la página, o que un enlace navegue.",
+        },
+        {
+          topic: "JavaScript",
+          text: "¿Qué retorna <code>typeof null</code> en JavaScript?",
+          options: ['"null"', '"undefined"', '"object"', '"boolean"'],
+          correct: 2,
+          explanation:
+            'Es un bug histórico de JavaScript. <code>typeof null</code> retorna <strong>"object"</strong> aunque <code>null</code> no es un objeto. Se mantuvo así por compatibilidad.',
+        },
+        {
+          topic: "Web",
+          text: "¿Cuál es la diferencia entre <code>localStorage</code> y <code>sessionStorage</code>?",
+          options: [
+            "localStorage es más rápido",
+            "sessionStorage persiste al cerrar el navegador",
+            "localStorage persiste aunque se cierre el navegador",
+            "No hay diferencia",
+          ],
+          correct: 2,
+          explanation:
+            "<strong>localStorage</strong> persiste indefinidamente hasta que se elimine manualmente. <strong>sessionStorage</strong> se borra cuando se cierra la pestaña o el navegador.",
+        },
+      ];
+
+      let current = 0,
+        score = 0,
+        answered = false;
+
+      function renderQuestion() {
+        const q = questions[current];
+        answered = false;
+        document.getElementById("q-num").textContent = current + 1;
+        document.getElementById("q-progress").style.width =
+          ((current + 1) / 10) * 100 + "%";
+        document.getElementById("q-topic").textContent = q.topic;
+        document.getElementById("q-text").innerHTML = q.text;
+        document.getElementById("q-explanation").className = "explanation";
+        document.getElementById("q-explanation").innerHTML =
+          "💡 " + q.explanation;
+        document.getElementById("btn-next").style.display = "none";
+
+        const opts = document.getElementById("q-options");
+        opts.innerHTML = q.options
+          .map(
+            (o, i) =>
+              `<button class="option-btn" onclick="answer(${i})">${o}</button>`,
+          )
+          .join("");
+      }
+
+      function answer(idx) {
+        if (answered) return;
+        answered = true;
+        const q = questions[current];
+        const btns = document.querySelectorAll(".option-btn");
+        btns.forEach((b, i) => {
+          b.disabled = true;
+          if (i === q.correct) b.classList.add("correct");
+          else if (i === idx) b.classList.add("wrong");
+        });
+        if (idx === q.correct) score++;
+        document.getElementById("q-explanation").classList.add("show");
+        document.getElementById("btn-next").style.display = "inline-block";
+        document.getElementById("btn-next").textContent =
+          current < 9 ? "Siguiente →" : "🏆 Ver Resultados";
+      }
+
+      function nextQuestion() {
+        current++;
+        if (current >= questions.length) {
+          showResults();
+        } else {
+          renderQuestion();
+        }
+      }
+
+      function showResults() {
+        document.getElementById("quiz-area").style.display = "none";
+        const res = document.getElementById("results");
+        res.style.display = "flex";
+        document.getElementById("res-score").textContent = score;
+        const msgs = [
+          [
+            0,
+            3,
+            "😅 Sigue Practicando",
+            "Revisa el Cheatsheet y vuelve a intentarlo.",
+          ],
+          [
+            4,
+            6,
+            "🙂 Buen Esfuerzo",
+            "¡Ya conoces lo básico! Un poco más de práctica y lo dominarás.",
+          ],
+          [7, 8, "👏 ¡Muy Bien!", "Tienes una sólida base. ¡Sigue así!"],
+          [
+            9,
+            10,
+            "🏆 ¡Excelente!",
+            "¡Dominas los fundamentos del desarrollo web! 🎉",
+          ],
+        ];
+        const [, , msg, sub] = msgs.find(
+          ([min, max]) => score >= min && score <= max,
+        );
+        document.getElementById("res-msg").textContent = msg;
+        document.getElementById("res-sub").textContent = sub;
+      }
+
+      function restartQuiz() {
+        current = 0;
+        score = 0;
+        document.getElementById("results").style.display = "none";
+        document.getElementById("quiz-area").style.display = "flex";
+        renderQuestion();
+      }
+
+      renderQuestion();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piedra Papel Tijeras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: calc(100vh - 70px);
+        padding: 100px 20px 60px;
+        gap: 25px;
+      }
+      .page-title {
+        font-family: "Outfit", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+      .scoreboard {
+        display: flex;
+        gap: 15px;
+      }
+      .score-box {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 15px 25px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+      .score-box .num {
+        font-size: 2.2rem;
+        font-weight: 700;
+        font-family: "Outfit", sans-serif;
+      }
+      .score-box .lbl {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      #sp .num {
+        color: #10b981;
+      }
+      #sc .num {
+        color: #ef4444;
+      }
+      #st .num {
+        color: #f59e0b;
+      }
+      .arena {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 20px;
+        align-items: center;
+        max-width: 560px;
+        width: 100%;
+      }
+      .side {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+      .side-lbl {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .emoji {
+        font-size: 3.5rem;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .emoji.pop {
+        animation: pop 0.4s ease;
+      }
+      @keyframes pop {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.35);
+        }
+      }
+      .vs {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+      }
+      .result {
+        font-size: 1.3rem;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        padding: 14px 35px;
+        border-radius: 50px;
+        border: 1px solid var(--glass-border);
+        background: var(--card-bg);
+        color: var(--text-secondary);
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .result.win {
+        border-color: #10b981;
+        color: #10b981;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+      }
+      .result.lose {
+        border-color: #ef4444;
+        color: #ef4444;
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+      }
+      .result.tie {
+        border-color: #f59e0b;
+        color: #f59e0b;
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+      }
+      .choices {
+        display: flex;
+        gap: 15px;
+      }
+      .cbtn {
+        font-size: 2.8rem;
+        background: var(--card-bg);
+        border: 2px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 18px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .cbtn:hover {
+        border-color: var(--accent-primary);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px var(--accent-glow);
+      }
+      .reset {
+        padding: 10px 25px;
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--text-secondary);
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: "Outfit", sans-serif;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+      }
+      .reset:hover {
+        border-color: var(--accent-primary);
+        color: var(--text-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1 class="page-title">✊ Piedra, Papel o Tijeras</h1>
+      <div class="scoreboard">
+        <div class="score-box" id="sp">
+          <div class="num" id="ps">0</div>
+          <div class="lbl">Tú</div>
+        </div>
+        <div class="score-box" id="st">
+          <div class="num" id="ts">0</div>
+          <div class="lbl">Empate</div>
+        </div>
+        <div class="score-box" id="sc">
+          <div class="num" id="cs">0</div>
+          <div class="lbl">CPU</div>
+        </div>
+      </div>
+      <div class="arena">
+        <div class="side">
+          <div class="side-lbl">Tú</div>
+          <div class="emoji" id="pe">🤔</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="side">
+          <div class="side-lbl">CPU</div>
+          <div class="emoji" id="ce">🤖</div>
+        </div>
+      </div>
+      <div class="result" id="result">¡Elige una opción!</div>
+      <div class="choices">
+        <button class="cbtn" onclick="play('piedra')">✊</button>
+        <button class="cbtn" onclick="play('papel')">🖐️</button>
+        <button class="cbtn" onclick="play('tijeras')">✌️</button>
+      </div>
+      <button class="reset" onclick="resetScore()">
+        🔄 Reiniciar Marcador
+      </button>
+    </main>
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let s = { p: 0, c: 0, t: 0 };
+      const em = { piedra: "✊", papel: "🖐️", tijeras: "✌️" };
+      const opts = ["piedra", "papel", "tijeras"];
+      const beats = { piedra: "tijeras", papel: "piedra", tijeras: "papel" };
+      function play(pc) {
+        const cc = opts[Math.floor(Math.random() * 3)];
+        const pe = document.getElementById("pe"),
+          ce = document.getElementById("ce"),
+          res = document.getElementById("result");
+        pe.textContent = em[pc];
+        ce.textContent = em[cc];
+        pe.className = "emoji";
+        ce.className = "emoji";
+        void pe.offsetWidth;
+        pe.className = "emoji pop";
+        ce.className = "emoji pop";
+        res.className = "result";
+        if (pc === cc) {
+          res.textContent = "🤝 ¡Empate!";
+          res.classList.add("tie");
+          s.t++;
+        } else if (beats[pc] === cc) {
+          res.textContent = "🏆 ¡Ganaste!";
+          res.classList.add("win");
+          s.p++;
+        } else {
+          res.textContent = "😅 ¡Perdiste!";
+          res.classList.add("lose");
+          s.c++;
+        }
+        document.getElementById("ps").textContent = s.p;
+        document.getElementById("cs").textContent = s.c;
+        document.getElementById("ts").textContent = s.t;
+      }
+      function resetScore() {
+        s = { p: 0, c: 0, t: 0 };
+        document.getElementById("ps").textContent = 0;
+        document.getElementById("cs").textContent = 0;
+        document.getElementById("ts").textContent = 0;
+        document.getElementById("pe").textContent = "🤔";
+        document.getElementById("ce").textContent = "🤖";
+        document.getElementById("result").textContent = "¡Elige una opción!";
+        document.getElementById("result").className = "result";
+      }
+    </script>
+  </body>
+</html>

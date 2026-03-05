@@ -137,32 +137,103 @@
 
 <body>
     <header>
-        <nav class="nav">
-            <div class="enlaces-header">
-                <a href="../index.html"><i class="fa-solid fa-house"></i>
-                    Inicio
-                </a>
-                <a href="#HTML5"><i class="fa-brands fa-html5"></i>
-                    HTML5
-                </a>
-                <a href="../index.html#CSS3"><i class="fa-brands fa-css3-alt"></i>
-                    CSS3
-                </a>
-                <a href="#Javascript"><i class="fa-solid fa-fire"></i>
-                    Javascript
-                </a>
-                <a href="../index.html#parciales"><i class="fa-solid fa-book-open-reader"></i>
-                    Parciales
-                </a>
-                <a href="../html/form_User.html"><i class="fa-solid fa-user"></i>
-                    Usuario
-                </a>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
             </div>
-            <div class="hamburguer">
-                <i class="fa-solid fa-bars hamburgueri"></i>
-                <p>Jordy Prada</p>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
             </div>
-        </nav>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
     </header>
 
     <main class="cuerpo">

@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API - Buscador Pokémon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: calc(100vh - 70px);
+        padding: 100px 20px 60px;
+        gap: 25px;
+      }
+      .page-title {
+        font-family: "Outfit", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+      }
+      .page-sub {
+        color: var(--text-secondary);
+        text-align: center;
+        max-width: 500px;
+      }
+      .search-box {
+        display: flex;
+        gap: 12px;
+        max-width: 400px;
+        width: 100%;
+      }
+      .search-box input {
+        flex: 1;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--glass-border);
+        background: rgba(15, 23, 42, 0.6);
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s;
+      }
+      .search-box input:focus {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 10px var(--accent-glow);
+      }
+      .search-btn {
+        padding: 12px 25px;
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-family: "Outfit", sans-serif;
+        box-shadow: 0 4px 15px var(--accent-glow);
+      }
+      .search-btn:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+      .poke-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 30px 40px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 350px;
+        width: 100%;
+        display: none;
+      }
+      .poke-card.show {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .poke-num {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .poke-img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(99, 102, 241, 0.4));
+        transition: transform 0.3s;
+      }
+      .poke-img:hover {
+        transform: scale(1.1);
+      }
+      .poke-name {
+        font-family: "Outfit", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        margin: 10px 0;
+      }
+      .types {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+      .type-badge {
+        padding: 4px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        color: white;
+      }
+      .stats {
+        text-align: left;
+        width: 100%;
+      }
+      .stat-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .stat-name {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 80px;
+        flex-shrink: 0;
+      }
+      .stat-bar {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .stat-fill {
+        height: 100%;
+        border-radius: 50px;
+        background: var(--accent-primary);
+        transition: width 0.8s ease;
+      }
+      .stat-val {
+        font-size: 0.85rem;
+        font-weight: 600;
+        width: 35px;
+        text-align: right;
+      }
+      .error-msg {
+        color: #ef4444;
+        font-size: 0.9rem;
+        display: none;
+      }
+      .spinner {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--glass-border);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .concept {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 18px 25px;
+        max-width: 580px;
+        width: 100%;
+      }
+      .concept h3 {
+        font-family: "Outfit", sans-serif;
+        color: var(--accent-hover);
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+      .concept p {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+      .concept code {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #c084fc;
+        font-size: 0.8rem;
+      }
+      /* Type colors */
+      .fire {
+        background: #f97316;
+      }
+      .water {
+        background: #3b82f6;
+      }
+      .grass {
+        background: #22c55e;
+      }
+      .electric {
+        background: #eab308;
+      }
+      .psychic {
+        background: #ec4899;
+      }
+      .ice {
+        background: #67e8f9;
+      }
+      .dragon {
+        background: #7c3aed;
+      }
+      .dark {
+        background: #374151;
+      }
+      .fairy {
+        background: #f9a8d4;
+      }
+      .normal {
+        background: #94a3b8;
+      }
+      .fighting {
+        background: #dc2626;
+      }
+      .flying {
+        background: #818cf8;
+      }
+      .poison {
+        background: #a855f7;
+      }
+      .ground {
+        background: #d97706;
+      }
+      .rock {
+        background: #78716c;
+      }
+      .bug {
+        background: #84cc16;
+      }
+      .ghost {
+        background: #6d28d9;
+      }
+      .steel {
+        background: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1 class="page-title">🔌 Demo Fetch API</h1>
+      <p class="page-sub">
+        Busca cualquier Pokémon por nombre o número y observa cómo JavaScript
+        consume una API externa en tiempo real.
+      </p>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="query"
+          placeholder="Ej: pikachu, 25, charizard..."
+          onkeydown="if (event.key === 'Enter') search();"
+        />
+        <button class="search-btn" onclick="search()">
+          <i class="fa-solid fa-magnifying-glass"></i> Buscar
+        </button>
+      </div>
+
+      <div class="spinner" id="spinner"></div>
+      <p class="error-msg" id="error">
+        ❌ Pokémon no encontrado. Intenta con otro nombre o número.
+      </p>
+
+      <div class="poke-card" id="poke-card">
+        <p class="poke-num" id="poke-num">#001</p>
+        <img class="poke-img" id="poke-img" src="" alt="Pokemon" />
+        <h2 class="poke-name" id="poke-name">Bulbasaur</h2>
+        <div class="types" id="poke-types"></div>
+        <div class="stats" id="poke-stats"></div>
+      </div>
+
+      <div class="concept">
+        <h3>
+          💡 Concepto Demostrado: <code>fetch()</code> +
+          <code>async/await</code>
+        </h3>
+        <p>
+          Al hacer clic en "Buscar", se llama a
+          <code>fetch('https://pokeapi.co/api/v2/pokemon/' + nombre)</code>. La
+          respuesta se convierte en JSON con <code>.json()</code>, y los datos
+          se usan para actualizar dinámicamente el HTML. También se maneja el
+          error con <code>try/catch</code> para mostrar un mensaje si el Pokémon
+          no existe.
+        </p>
+      </div>
+    </main>
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      async function search() {
+        const q = document.getElementById("query").value.trim().toLowerCase();
+        if (!q) return;
+
+        document.getElementById("poke-card").classList.remove("show");
+        document.getElementById("error").style.display = "none";
+        document.getElementById("spinner").style.display = "block";
+
+        try {
+          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);
+          if (!res.ok) throw new Error("Not found");
+          const data = await res.json();
+
+          document.getElementById("poke-num").textContent =
+            `#${String(data.id).padStart(3, "0")}`;
+          document.getElementById("poke-img").src =
+            data.sprites.other["official-artwork"].front_default ||
+            data.sprites.front_default;
+          document.getElementById("poke-name").textContent = data.name;
+
+          const typesEl = document.getElementById("poke-types");
+          typesEl.innerHTML = data.types
+            .map(
+              (t) =>
+                `<span class="type-badge ${t.type.name}">${t.type.name}</span>`,
+            )
+            .join("");
+
+          const statNames = {
+            hp: "HP",
+            attack: "Ataque",
+            defense: "Defensa",
+            "special-attack": "Sp.Atk",
+            "special-defense": "Sp.Def",
+            speed: "Velocidad",
+          };
+          const statsEl = document.getElementById("poke-stats");
+          statsEl.innerHTML = data.stats
+            .map(
+              (s) => `
+                    <div class="stat-row">
+                        <span class="stat-name">${statNames[s.stat.name] || s.stat.name}</span>
+                        <div class="stat-bar"><div class="stat-fill" style="width:${Math.min((s.base_stat / 255) * 100, 100)}%"></div></div>
+                        <span class="stat-val">${s.base_stat}</span>
+                    </div>`,
+            )
+            .join("");
+
+          document.getElementById("poke-card").classList.add("show");
+        } catch (e) {
+          document.getElementById("error").style.display = "block";
+        } finally {
+          document.getElementById("spinner").style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

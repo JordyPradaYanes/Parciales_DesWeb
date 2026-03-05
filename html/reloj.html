@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reloj Digital - setInterval</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 70px);
+        padding-top: 70px;
+        gap: 30px;
+      }
+      .clock-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 50px 60px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+      .clock-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .clock-label i {
+        color: var(--accent-primary);
+      }
+      .time-display {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #a5b4fc, #c084fc);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 4px;
+        line-height: 1;
+      }
+      .time-display .colon {
+        animation: blink 1s ease-in-out infinite;
+        -webkit-text-fill-color: var(--accent-hover);
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .date-display {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-top: 20px;
+        font-family: "Outfit", sans-serif;
+        font-weight: 400;
+        display: none;
+      }
+      .date-display.visible {
+        display: block;
+      }
+      .controls {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-modern {
+        padding: 12px 30px;
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px var(--accent-glow);
+        font-family: "Outfit", sans-serif;
+      }
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--text-primary);
+        box-shadow: none;
+      }
+      .btn-modern:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(129, 140, 248, 0.5);
+      }
+      .btn-secondary:hover {
+        background: var(--card-bg);
+      }
+      .info-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 20px 30px;
+        max-width: 600px;
+        text-align: left;
+      }
+      .info-card h3 {
+        font-family: "Outfit", sans-serif;
+        color: var(--accent-hover);
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+      .info-card p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .info-card code {
+        font-family: "JetBrains Mono", monospace;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #c084fc;
+        font-size: 0.85rem;
+      }
+      .zones {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .zone-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 15px 25px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 130px;
+      }
+      .zone-card:hover,
+      .zone-card.active {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 15px var(--accent-glow);
+      }
+      .zone-card .zone-name {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 5px;
+      }
+      .zone-card .zone-time {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="enlaces-header">
+          <a href="../index.html#Inicio" data-section="Inicio"
+            ><i class="fa-solid fa-house"></i> Inicio</a
+          >
+          <a href="../index.html#HTML5" data-section="HTML5"
+            ><i class="fa-brands fa-html5"></i> HTML5</a
+          >
+          <a href="../index.html#CSS3" data-section="CSS3"
+            ><i class="fa-brands fa-css3-alt"></i> CSS3</a
+          >
+          <a href="../index.html#Javascript" data-section="Javascript"
+            ><i class="fa-solid fa-fire"></i> Javascript</a
+          >
+
+          <!-- Dropdown: Parciales -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-book-open-reader"></i> Parciales
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/Parcial_1.html"
+                ><i class="fa-solid fa-calculator"></i> Punto 1 — Calculadora</a
+              >
+              <a href="../html/Parcial_2.html"
+                ><i class="fa-solid fa-table"></i> Punto 2 — Tablas</a
+              >
+              <a href="../html/Parcial_3.html"
+                ><i class="fa-solid fa-palette"></i> Punto 3 — HTML &amp; CSS</a
+              >
+              <a href="../html/Parcial_4.html"
+                ><i class="fa-solid fa-shield-halved"></i> Punto 4 —
+                Validación</a
+              >
+              <a href="../html/Parcial_5.html"
+                ><i class="fa-solid fa-user-plus"></i> Punto 5 — Registro</a
+              >
+              <a href="../html/Parcial_6.html"
+                ><i class="fa-solid fa-code"></i> Punto 6 — HTML &amp; CSS</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/Parcial_7.html"
+                ><i class="fa-solid fa-share-nodes"></i> Punto 7 — Social 3D</a
+              >
+              <a href="../html/Parcial_8.html"
+                ><i class="fa-solid fa-newspaper"></i> Punto 8 — Blog Grid</a
+              >
+            </div>
+          </div>
+
+          <!-- Dropdown: Herramientas -->
+          <div class="nav-dropdown">
+            <span class="dropdown-trigger">
+              <i class="fa-solid fa-graduation-cap"></i> Herramientas
+              <i class="fa-solid fa-chevron-down caret"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="../html/cheatsheet.html"
+                ><i class="fa-solid fa-book"></i> Cheatsheet</a
+              >
+              <a href="../html/reloj.html"
+                ><i class="fa-solid fa-clock"></i> Reloj Digital</a
+              >
+              <a href="../html/juego.html"
+                ><i class="fa-solid fa-gamepad"></i> Juego JS</a
+              >
+              <a href="../html/fetch_demo.html"
+                ><i class="fa-solid fa-wifi"></i> Fetch API</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="../html/retos.html"
+                ><i class="fa-solid fa-trophy"></i> Retos</a
+              >
+              <a href="../html/quiz.html"
+                ><i class="fa-solid fa-circle-question"></i> Quiz</a
+              >
+            </div>
+          </div>
+
+          <a href="../html/form_User.html"
+            ><i class="fa-solid fa-user"></i> Usuario</a
+          >
+        </div>
+        <div class="hamburguer">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            title="Cambiar tema"
+            onclick="toggleTheme()"
+          >
+            🌙
+          </button>
+          <i class="fa-solid fa-bars hamburgueri"></i>
+          <p>Jordy Prada</p>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="clock-card">
+        <p class="clock-label"><i class="fa-solid fa-clock"></i> Hora Local</p>
+        <div class="time-display" id="clock">
+          00<span class="colon">:</span>00<span class="colon">:</span>00
+        </div>
+        <div class="date-display" id="date"></div>
+      </div>
+
+      <div class="controls">
+        <button class="btn-modern btn-secondary" onclick="toggleDate()">
+          <i class="fa-solid fa-calendar-days"></i> Mostrar Fecha
+        </button>
+      </div>
+
+      <div class="zones">
+        <div class="zone-card" id="zone-col">
+          <div class="zone-name">🇨🇴 Colombia</div>
+          <div class="zone-time" id="time-col">--:--:--</div>
+        </div>
+        <div class="zone-card" id="zone-ny">
+          <div class="zone-name">🇺🇸 New York</div>
+          <div class="zone-time" id="time-ny">--:--:--</div>
+        </div>
+        <div class="zone-card" id="zone-lon">
+          <div class="zone-name">🇬🇧 London</div>
+          <div class="zone-time" id="time-lon">--:--:--</div>
+        </div>
+        <div class="zone-card" id="zone-tok">
+          <div class="zone-name">🇯🇵 Tokyo</div>
+          <div class="zone-time" id="time-tok">--:--:--</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>💡 Concepto Demostrado: <code>setInterval()</code></h3>
+        <p>
+          Este reloj usa <code>setInterval(updateClock, 1000)</code> para
+          ejecutar la función <code>updateClock</code> cada 1000ms (1 segundo).
+          Dentro de esta función, se obtiene la hora actual con
+          <code>new Date()</code> y se actualiza el contenido del elemento HTML
+          con <code>textContent</code>. ¡Así funciona la actualización dinámica
+          del DOM!
+        </p>
+      </div>
+    </main>
+
+    <script src="../Js/sttilos.js"></script>
+    <script
+      src="https://kit.fontawesome.com/459ee9189d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let showDate = false;
+
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function getTimeInZone(zone) {
+        return new Date().toLocaleTimeString("es-CO", {
+          timeZone: zone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+      }
+
+      function updateClock() {
+        const now = new Date();
+        const h = pad(now.getHours());
+        const m = pad(now.getMinutes());
+        const s = pad(now.getSeconds());
+
+        document.getElementById("clock").innerHTML =
+          `${h}<span class="colon">:</span>${m}<span class="colon">:</span>${s}`;
+
+        const days = [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+        ];
+        const months = [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
+        ];
+        document.getElementById("date").textContent =
+          `${days[now.getDay()]}, ${now.getDate()} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+
+        document.getElementById("time-col").textContent =
+          getTimeInZone("America/Bogota");
+        document.getElementById("time-ny").textContent =
+          getTimeInZone("America/New_York");
+        document.getElementById("time-lon").textContent =
+          getTimeInZone("Europe/London");
+        document.getElementById("time-tok").textContent =
+          getTimeInZone("Asia/Tokyo");
+      }
+
+      function toggleDate() {
+        showDate = !showDate;
+        document.getElementById("date").classList.toggle("visible", showDate);
+        const btn = document.querySelector(".btn-secondary");
+        btn.innerHTML = showDate
+          ? '<i class="fa-solid fa-calendar-xmark"></i> Ocultar Fecha'
+          : '<i class="fa-solid fa-calendar-days"></i> Mostrar Fecha';
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
